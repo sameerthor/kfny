@@ -1,0 +1,177 @@
+/* font sizes */
+/* Colors */
+/* border radiuses */
+.kfnythemes header {
+  border: 1px solid rgba(189, 189, 189, 0.32);
+  background: #FFF;
+}
+.kfnythemes header .row {
+  justify-content: space-between !important;
+}
+.kfnythemes header .row .col-3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.kfnythemes header .row .col-3 .kfnythems_logo {
+  position: relative;
+  width: 100%;
+}
+.kfnythemes header .row .col-3 .kfnythems_logo img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.kfnythemes header .row .col-4 {
+  display: flex;
+  justify-content: end;
+}
+.kfnythemes header .row .col-4 .kfnythemes_notification_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.kfnythemes header .row .col-4 .kfnythemes_notification_icon i::after {
+  content: "";
+  position: absolute;
+  height: 7px;
+  background: red;
+  width: 7px;
+  background-size: 100%;
+  z-index: 1;
+  right: 0;
+  border-radius: 100%;
+}
+.kfnythemes header .row .col-4 button {
+  background: #fff;
+  border: none;
+}
+.kfnythemes header .row .col-4 .kfnythemes_admin button {
+  display: flex;
+}
+.kfnythemes header .row .col-4 .kfnythemes_admin button::after {
+  color: #7C7C7C;
+  position: absolute;
+  top: 50%;
+  right: 0;
+}
+.kfnythemes header .row .col-4 .kfnythemes_admin button .kfnythemes_admin_name {
+  color: #323232;
+  text-align: right;
+  font-family: "Plus Jakarta Sans";
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: block;
+  margin: auto;
+  width: 100%;
+}
+.kfnythemes header .row .col-4 .kfnythemes_admin button .kfnythemes_admin_proifle {
+  display: block;
+  width: 46px;
+  height: 46px;
+}
+.kfnythemes header .row .col-4 .kfnythemes_admin button .kfnythemes_admin_proifle img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.kfnythemes .kfnythemes_container {
+  position: relative;
+  width: 100%;
+}
+.kfnythemes .kfnythemes_container .menu_section {
+  position: relative;
+  width: 15%;
+  border-right: 1px solid rgba(189, 189, 189, 0.4);
+  padding: 0;
+}
+.kfnythemes .kfnythemes_container .menu_section a {
+  text-decoration: none;
+}
+.kfnythemes .kfnythemes_container .menu_section .menu_section_item {
+  display: flex;
+  margin: 20px 0;
+  padding: 10px;
+}
+.kfnythemes .kfnythemes_container .menu_section .menu_section_item .menu_icon {
+  margin-right: 15px;
+}
+.kfnythemes .kfnythemes_container .menu_section .menu_section_item .menu_name {
+  color: #7C7C7C;
+  font-family: "Plus Jakarta Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+}
+.kfnythemes .kfnythemes_container .menu_section .menu_section_item .menu_icon svg {
+  fill: #7C7C7C;
+  display: flex;
+}
+.kfnythemes .kfnythemes_container .main_container {
+  position: relative;
+  width: 85%;
+}
+.kfnythemes .kfny_active {
+  background: #FAF6FF;
+  border-left: 3px solid #6A00F3;
+}
+.kfnythemes .kfny_active .menu_icon svg {
+  fill: #6A00F3 !important;
+}
+.kfnythemes .kfny_active .menu_name {
+  color: #6a00f3 !important;
+}
+
+.kfnythemes_modal .button_one {
+  display: flex;
+  justify-content: end;
+}
+.kfnythemes_modal .modal-dialog {
+  max-width: 75%;
+}
+.kfnythemes_modal .modal-header {
+  background: #7C7C7C;
+  color: white;
+}
+.kfnythemes_modal .modal-header h1 {
+  font-family: "Plus Jakarta Sans";
+}
+
+.kfnythemes_modal .modal_main_body {
+  height: 500px;
+  overflow-y: scroll;
+  background: rgb(246, 248, 250);
+}
+.kfnythemes_modal .modal-footer .btn-primary {
+  background: #7C7C7C;
+  border: 2px solid #7C7C7C;}
+
+.modal-header .btn-close{
+  color:white;
+}
+
+.kfnythemes_table table tr th {
+  color: #323232 !important;
+  font-family: "Plus Jakarta Sans";
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  line-height: normal !important;
+}
+.kfnythemes_table table tr td {
+  color: #323232 !important;
+  font-family: "Plus Jakarta Sans";
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  border: none;
+  padding: 20px 10px;
+  line-height: normal !important;
+}/*# sourceMappingURL=kfnythemes.css.map */
