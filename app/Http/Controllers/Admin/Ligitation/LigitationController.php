@@ -24,7 +24,7 @@ class LigitationController extends Controller
      */
     public function index()
     {
-        $insuranceId = InsuranceCompany::orderBy('id', 'desc')->get();
+        $insuranceId = InsuranceCompany::orderBy('id', 'desc')->get();;
         $provoiderId = ProvoiderInformation::orderBy('id', 'desc')->get();
         $defenceFirmId = DefenseFirm::orderBy('id', 'desc')->get();
         $venueCounty = Venue::all();
