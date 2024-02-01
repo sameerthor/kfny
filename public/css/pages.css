@@ -642,6 +642,15 @@
   background: rgb(248, 248, 248);
   color: rgb(124, 124, 124);
 }
+
+.serch_input select {
+  width: 263px;
+  height: 40px;
+  border-radius: 7px;
+  background: rgb(248, 248, 248);
+  color: rgb(124, 124, 124);
+}
+
 .serch_input input:focus {
   box-shadow: none;
   border: none;
@@ -869,3 +878,6 @@
   outline: none !important;
   overflow: hidden;
 }/*# sourceMappingURL=pages.css.map */
+.error{
+  color: red;
+}

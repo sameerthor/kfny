@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="login_section_image">
-                    <img src="{{ asset('images/Other/login_section.jpg') }}" />
+                    <img src="{{ asset('images/other/login_section.jpg') }}" />
                 </div>
             </div>
             <div class="col-md-6">
@@ -14,7 +14,7 @@
 
                     <div class="login_form_col">
                         <div class="login_form_logo">
-                            <img src="{{ asset('images/Logo/logo.svg') }}" />
+                            <img src="{{ asset('images/logo/logo.svg') }}" />
                         </div>
 
                         <form class="login_form" method="POST" action="{{ route('login') }}">

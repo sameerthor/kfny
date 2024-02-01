@@ -6,8 +6,11 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
+        "barryvdh/laravel-dompdf": "^2.0",
+        "dompdf/dompdf": "*",
         "fruitcake/laravel-cors": "^2.0.5",
         "guzzlehttp/guzzle": "^7.2",
+        "haruncpi/laravel-id-generator": "^1.1",
         "laravel/framework": "^9.0",
         "laravel/sanctum": "2.14",
         "laravel/tinker": "^2.7",
@@ -56,11 +59,7 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "platform": {
-            "php": "8.0.2"
-        },
-        "sort-packages": true,
-        "platform-check": false
+        "sort-packages": true
     },
     "minimum-stability": "dev",
     "prefer-stable": true

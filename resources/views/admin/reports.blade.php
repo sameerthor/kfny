@@ -4,7 +4,7 @@
 <div class="main_container">
   <div class="Patientinfo">
     <div class="page_title">
-      Reports
+      Ligitation.
     </div>
     <div class="row">
       <div class="col-md-9">

@@ -61,205 +61,14 @@
           <div class="kfnythemes_modal">
             <!-- Button trigger modal  html start-->
             <div class="button_one">
-              <button class="btn" data-bs-toggle="modal" data-bs-target="#ArbitratorModal">
-                <i class="bi bi-plus-lg"></i> Add New
+              <button class="btn add-venue-modal" data-url="{{ route('venue.create') }}" data-bs-toggle="modal" data-bs-target="#ArbitratorModal">
+                <i class="bi bi-plus-lg"></i> Add Venue
               </button>
             </div>
             <!-- Button trigger modal  html start-->
-
-
-
-            <!-- Modal body  html start-->
-            <div class="modal fade" id="ArbitratorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add To-do</h1>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal_main_body">
-                    <form>
-
-                      <div class="modal-body">
-
-
-                      </div>
-                      <div class="modal-footer float-start">
-                        <button type="button" class="btn btn-primary">SUBMIT</button>
-                      </div>
-                    </form>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Modal body html end-->
-
           </div>
-
-
-          <div class="kfnythemes_table mt-4">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">File No</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Amount</th>
-                  <th scope="col">Assignor</th>
-                  <th scope="col">Provider</th>
-                  <th scope="col">Principle Amount</th>
-                  <th scope="col">Interest Amount</th>
-                  <th scope="col">Filing Fees</th>
-                  <th scope="col">Legal Fees Due</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>49833</td>
-                  <td>01/12/2020</td>
-                  <td>$1234</td>
-                  <td>Margie Londono</td>
-                  <td>Liny Medicine & Acupuncture</td>
-                  <td>$2,280.11</td>
-                  <td>$0.00</td>
-                  <td>$0.00</td>
-                  <td>$288</td>
-                  <td class="table_button">
-                    <div class="dropdown">
-                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                      </a>
-
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li>
-                          <a class="dropdown-item" href="#">View</a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">Add</a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">Generate</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>49833</td>
-                  <td>01/12/2020</td>
-                  <td>$1234</td>
-                  <td>Margie Londono</td>
-                  <td>Liny Medicine & Acupuncture</td>
-                  <td>$2,280.11</td>
-                  <td>$0.00</td>
-                  <td>$0.00</td>
-                  <td>$288</td>
-                  <td class="table_button">
-                    <div class="dropdown">
-                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li>
-                          <a class="dropdown-item" href="#">View</a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">Add</a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">Generate</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>49833</td>
-                  <td>01/12/2020</td>
-                  <td>$1234</td>
-                  <td>Margie Londono</td>
-                  <td>Liny Medicine & Acupuncture</td>
-                  <td>$2,280.11</td>
-                  <td>$0.00</td>
-                  <td>$0.00</td>
-                  <td>$288</td>
-                  <td class="table_button">
-                    <div class="dropdown">
-                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                      </a>
-
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li>
-                          <a class="dropdown-item" href="#">View</a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">Add</a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">Generate</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>49833</td>
-                  <td>01/12/2020</td>
-                  <td>$1234</td>
-                  <td>Margie Londono</td>
-                  <td>Liny Medicine & Acupuncture</td>
-                  <td>$2,280.11</td>
-                  <td>$0.00</td>
-                  <td>$0.00</td>
-                  <td>$288</td>
-                  <td class="table_button">
-                    <div class="dropdown">
-                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                      </a>
-
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li>
-                          <a class="dropdown-item" href="#">View</a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">Add</a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">Generate</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>49833</td>
-                  <td>01/12/2020</td>
-                  <td>$1234</td>
-                  <td>Margie Londono</td>
-                  <td>Liny Medicine & Acupuncture</td>
-                  <td>$2,280.11</td>
-                  <td>$0.00</td>
-                  <td>$0.00</td>
-                  <td>$288</td>
-                  <td class="table_button">
-                    <div class="dropdown">
-                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                      </a>
-
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li>
-                          <a class="dropdown-item" href="#">View</a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">Add</a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" href="#">Generate</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="kfnythemes_table mt-4 venue-table">
+            @include('admin.DataManagment.Venue.index')
           </div>
         </div>
       </div>
@@ -269,7 +78,24 @@
       <!-- Provider Information start -->
 
       <div class="tab-pane fade" id="pills-ProviderInformation" role="tabpanel" aria-labelledby="pills-ProviderInformation-tab">
-        Provider Information
+        <div class="kfnythemes_modal">
+          <!-- Button trigger modal  html start-->
+          <div class="button_one">
+            <button class="btn add-ProviderInformation-modal" data-url="{{ route('data-management.create') }}" data-bs-toggle="modal" data-bs-target="#ArbitratorModal">
+              <i class="bi bi-plus-lg"></i> Add Provider Information
+            </button>
+          </div>
+          <!-- Button trigger modal  html start-->
+
+
+
+        </div>
+
+
+        <div class="kfnythemes_table mt-4 ProviderInformation-table">
+
+          @include('admin.DataManagment.ProvoiderInformation.index')
+        </div>
       </div>
 
       <!-- Provider Information end -->
@@ -277,7 +103,24 @@
       <!-- Insurance Company start -->
 
       <div class="tab-pane fade" id="pills-InsuranceCompany" role="tabpanel" aria-labelledby="pills-InsuranceCompany-tab">
-        Insurance Company
+        <div class="kfnythemes_modal">
+          <!-- Button trigger modal  html start-->
+          <div class="button_one">
+            <button class="btn add-Insurance-modal" data-url="{{ route('insurance-company.create') }}" data-bs-toggle="modal" data-bs-target="#ArbitratorModal">
+              <i class="bi bi-plus-lg"></i> Add Insurance Company
+            </button>
+          </div>
+          <!-- Button trigger modal  html start-->
+
+
+
+        </div>
+
+
+        <div class="kfnythemes_table mt-4 insurance-table">
+
+          @include('admin.DataManagment.InsuranceCompany.index')
+        </div>
       </div>
 
       <!-- Insurance Company end -->
@@ -285,7 +128,22 @@
       <!-- Defense Firm start -->
 
       <div class="tab-pane fade" id="pills-DefenseFirm" role="tabpanel" aria-labelledby="pills-DefenseFirm-tab">
-        Defense Firm
+        <div class="kfnythemes_modal">
+          <!-- Button trigger modal  html start-->
+          <div class="button_one">
+            <button class="btn add-defense-firm-modal" data-url="{{ route('defense-firm.create') }}" data-bs-toggle="modal" data-bs-target="#ArbitratorModal">
+              <i class="bi bi-plus-lg"></i> Add Defense Firm
+            </button>
+          </div>
+          <!-- Button trigger modal  html start-->
+
+        </div>
+
+
+        <div class="kfnythemes_table mt-4 defence-table">
+
+          @include('admin.DataManagment.DefenseFirm.index')
+        </div>
       </div>
 
       <!-- Defense Firm end -->
@@ -293,7 +151,22 @@
       <!-- Judge  start -->
 
       <div class="tab-pane fade" id="pills-Judge" role="tabpanel" aria-labelledby="pills-Judge-tab">
-        Judge
+        <div class="kfnythemes_modal">
+          <!-- Button trigger modal  html start-->
+          <div class="button_one">
+            <button class="btn add-judge-modal" data-url="{{ route('judge.create') }}" data-bs-toggle="modal" data-bs-target="#ArbitratorModal">
+              <i class="bi bi-plus-lg"></i> Add Judge
+            </button>
+          </div>
+          <!-- Button trigger modal  html start-->
+
+        </div>
+
+
+        <div class="kfnythemes_table mt-4 judge-table">
+
+          @include('admin.DataManagment.Judge.index')
+        </div>
       </div>
 
       <!-- Judge Firm end -->
@@ -301,7 +174,20 @@
       <!-- Arbitrator  start -->
 
       <div class="tab-pane fade" id="pills-Arbitrator" role="tabpanel" aria-labelledby="pills-Arbitrator-tab">
-        Arbitrator
+      <div class="datamangement_tab">
+          <div class="kfnythemes_modal">
+            <!-- Button trigger modal  html start-->
+            <div class="button_one">
+              <button class="btn add-arbitrator-modal" data-url="{{ route('arbitrator.create') }}" data-bs-toggle="modal" data-bs-target="#ArbitratorModal">
+                <i class="bi bi-plus-lg"></i> Add Arbitrator
+              </button>
+            </div>
+            <!-- Button trigger modal  html start-->
+          </div>
+          <div class="kfnythemes_table mt-4 arbitrator-table">
+            @include('admin.DataManagment.Arbitrator.index')
+          </div>
+        </div>
       </div>
 
       <!-- Arbitrator Firm end -->
@@ -309,6 +195,14 @@
   </div>
 </div>
 
+@section('javascript')
 <!-- main container  html end -->
+<script src="{{asset('js/data-management-provoider.js')}}"></script>
+<script src="{{asset('js/data-management-insurance.js')}}"></script>
+<script src="{{asset('js/data-management-defense.js')}}"></script>
+<script src="{{asset('js/judge.js')}}"></script>
+<script src="{{asset('js/venue.js')}}"></script>
+<script src="{{asset('js/arbitrator.js')}}"></script>
 
+@endsection
 @endsection

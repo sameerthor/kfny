@@ -1,6 +1,9 @@
 /* font sizes */
 /* Colors */
 /* border radiuses */
+.error_validate{
+  color: red;
+}
 .kfnythemes header {
   border: 1px solid rgba(189, 189, 189, 0.32);
   background: #FFF;
@@ -140,12 +143,16 @@
   background: #7C7C7C;
   color: white;
 }
+.kfnythemes_ .card-header{
+  background: #7C7C7C;
+  color: white; 
+}
 .kfnythemes_modal .modal-header h1 {
   font-family: "Plus Jakarta Sans";
 }
 
 .kfnythemes_modal .modal_main_body {
-  height: 500px;
+  max-height: 500px;
   overflow-y: scroll;
   background: rgb(246, 248, 250);
 }
@@ -175,3 +182,7 @@
   padding: 20px 10px;
   line-height: normal !important;
 }/*# sourceMappingURL=kfnythemes.css.map */
+
+.form-group{
+margin-bottom: 10px;
+}

@@ -157,7 +157,7 @@
                 </div>
               </a>
 
-              <a href="Reports.html">
+              <a href="Ligitation.html">
                 <div class="menu_section_item">
                   <div class="menu_icon">
                     <svg
@@ -178,7 +178,7 @@
                       </defs>
                     </svg>
                   </div>
-                  <div class="menu_name">Reports</div>
+                  <div class="menu_name">Ligitation.</div>
                 </div>
               </a>
 
