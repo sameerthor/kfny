@@ -466,7 +466,7 @@ class LigitationController extends Controller
         $filtered = array_filter($request->all());
         $basicIntakeData=BasicIntake::where($filtered)->get();
         $tableHtml = view(
-            'admin.Ligitation.include.basic-intake-table',compact('basicIntakeData')
+            'admin.Ligitation.Include.basic-intake-table',compact('basicIntakeData')
         )->render();
 
         return response()->json([
