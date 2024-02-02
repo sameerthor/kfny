@@ -180,7 +180,7 @@
                 <h5 class="card-title"> Basic Intake</h5>
               </div>
               <div class="card-body basicIntake_div">
-                @include('admin\Ligitation.\add-basic-intake')
+                @include('admin.Ligitation.add-basic-intake')
               </div>
             </div>
           </div>
