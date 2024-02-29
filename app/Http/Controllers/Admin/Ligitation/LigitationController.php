@@ -30,7 +30,11 @@ class LigitationController extends Controller
         $venueCounty = Venue::all();
         return view('admin.Ligitation.index', compact('venueCounty','defenceFirmId', 'insuranceId', 'provoiderId'));
     }
-
+    
+    public function livewireView()
+    {
+        return view('admin.Ligitation.livewire-index');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -43,7 +47,6 @@ class LigitationController extends Controller
             $provoiderId = ProvoiderInformation::orderBy('id', 'desc')->get();
             $defenceFirmId = DefenseFirm::orderBy('id', 'desc')->get();
             $venueCounty = Venue::all();
-
             $basicIntake = view(
                 'admin.Ligitation.add-basic-intake',
                 compact('defenceFirmId','venueCounty','insuranceId', 'provoiderId')

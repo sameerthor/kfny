@@ -1,0 +1,235 @@
+span.pi_detail_label {
+    display: inline-block;
+    max-width: 145px;
+    width: 100%;
+	color:#7c7c7c;
+}
+.pi_detail_wrap {
+    /* background: #F8F8F8; */
+    /* border-radius: 7px; */
+}
+.pi_detail_list {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+	
+}
+
+.pi_detail_one {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #BDBDBD4A;
+    padding: 0;
+    padding-bottom: 10px;
+
+}
+
+span.pi_detail_text {
+    font-weight: 600;
+    padding: 0px;
+}
+
+.pi_advanced_search_and_detail {
+    border-bottom: 1px solid #BDBDBD66;
+    padding-bottom: 20px;
+}
+.bill-data-table-d thead tr th {
+    background-color: #BDBDBD4A !important;
+}
+
+.bill-data-table-d thead tr th:first-child {
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.bill-data-table-d thead tr th:last-child {
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+.bill-data-tab-inner .tab-content {
+    display: block;
+	padding:0px;
+}
+
+.basic-detail-form-wrap .form-group input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0px;
+    outline: none !important;
+    padding: 0px;
+    padding-left: 0px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #000;
+}
+
+.basic-detail-form-wrap .form-group .col-form-label {
+	padding: 0;
+    width: 100%;
+    max-width: 150px;
+}
+
+.form-group {
+    padding: 10px 0px;
+}
+.form-group select {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+}
+
+.basic-detail-general .form-group:nth-child(even) {
+    padding-left: 15px;
+}
+
+.basic-detail-general .form-group:nth-child(odd) {
+    padding-right: 15px;
+}
+.bill-data-tab-inner form .row {
+    margin: 0;
+    justify-content: space-between;
+}
+.basic-detail-adv {
+    border-left: 1px solid #ccc;
+    padding-left: 30px;
+}
+.bill-data-tab-inner .nav-link.active {
+    color: #6A00F3;
+    border-color: #6A00F3;
+}
+
+.bill-data-tab-inner .nav-link {
+    border: none;
+    border-bottom: 2.5px solid transparent;
+    color: #000;
+    font-weight: 600;
+    padding: 10px 0px;
+}
+
+.bill-data-tab-inner ul.nav.nav-tabs {
+    gap: 20px;
+}
+
+.bill-data-tab-inner .nav-link:hover {
+    color: #6A00F3;
+    border-color: #6A00F3;
+}
+
+.form-edit-button button.btn:not(.btn-dark) {
+    background-color: #F5F9FF;
+}
+
+.form-edit-button {
+    /* display: flex; */
+}
+
+.form-edit-button .form-group.row {
+    justify-content: space-between;
+}
+
+.add-del-button {
+    text-align: right;
+    padding-right: 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.form-edit-button .submit-button {
+    padding-left: 0px;
+}
+form.patient-info-detail-form {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+.custom-select[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    border: none !important;
+    outline: none !important;
+    font-weight: bold;
+}
+
+.custom-select[disabled] option {
+    font-weight: bold;
+}
+
+.sky-btn {
+    background-color: #f6f9fe;
+}
+
+.pi_file_number_and_search {
+    display: flex;
+    gap: 15px;
+}
+input#file_number,input#index_search {
+    background: #F8F8F8;
+    border: none;
+    border-radius: 7px;
+}
+.adv-form-edit .form-group {
+    padding-right: 10px;
+}
+.pi_advanced_search {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #BDBDBD66;
+    margin: 0;
+    padding-left: 0;
+}
+#bill-add-table-popup .modal-dialog.modal-dialog-centered {
+    max-width: 852px;
+}
+
+#bill-add-table-popup .form-fields {
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.form-buttons .d-flex {
+    justify-content: end;
+    gap: 20px;
+}
+
+.form-buttons {
+    padding-top: 30px;
+}
+#patient-info-form-popup form.patient-info-detail-form .d-flex {
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#patient-info-form-popup .modal-dialog {
+    max-width: 900px;
+}
+#patient-info-form-popup form.patient-info-detail-form .form-buttons .d-flex {
+    justify-content: end;
+}
+.form-other-txtarea {
+    position: absolute;
+    top: 30px;
+    width: calc(100% - 20px);
+}
+.other-select-div {
+    position: relative;
+}
+
+.patient-notes-inner .notes-box {
+    gap: 24px;
+    flex-wrap: nowrap;
+}
+.patient-notes-inner .notes-box {
+    gap: 24px;
+    flex-wrap: nowrap;
+}
+.patient-notes-inner .form-group {
+    flex-wrap: wrap;
+}
+
+.clickable-row{
+    cursor: pointer;
+}
+#patient-info-form-popup{
+    display: none;
+}

@@ -72,11 +72,9 @@ Route::get('/provider-invoices',[InvoiceController::class, 'providerInvoices']);
 Route::get('/print-invoice',[InvoiceController::class, 'printInvoice'])->name('print_invoice');
 
 
-Route::resource('ligitation',LigitationController::class,[
-    'names' => [
-        'index' => 'ligitation',
-    ]
-]);    
+
+Route::get('ligitation', [LigitationController::class, 'livewireView']);
+
 Route::get('ligitation-search', [LigitationController::class, 'search']);
 Route::get('ligitation-react',function(){
     return view('admin.Ligitation.ligitation-react');

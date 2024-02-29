@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('basic_intake_details', function (Blueprint $table) {
+        Schema::create('basic_intake_billings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('basic_intake_id')->nullable();
+            $table->integer('basic_intake_id')->nullable();
             $table->string('dos_from', 50)->nullable();
             $table->string('dos_to', 50)->nullable();
             $table->decimal('amount', 15, 2)->default('0.00')->nullable();
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('basic_intake_details');
+        Schema::dropIfExists('basic_intake_billings');
     }
 };
