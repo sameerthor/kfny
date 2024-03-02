@@ -30,7 +30,7 @@ class BillData extends Component
         $data = $this->modalData;
         $id = $this->bill_id;
         $data['basic_intake_id']=$this->basic_intake_id;
-        $data['out_st']=$data['amount']-$data['partial_pay'];
+        $data['out_st']=@$data['amount']-@$data['partial_pay'];
         if (empty($id)) {
             BasicIntakeBilling::create($data);
           
