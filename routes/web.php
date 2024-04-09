@@ -4,11 +4,16 @@ use App\Http\Controllers\Admin\DataManagement\DefenseFirmController;
 use App\Http\Controllers\Admin\DataManagement\InsuranceCompanyController;
 use App\Http\Controllers\Admin\DataManagement\JudgeController;
 use App\Http\Controllers\Admin\DataManagement\VenueController;
+use App\Http\Controllers\Admin\DataManagement\DenialReasonController;
 use App\Http\Controllers\Admin\DataManagement\ArbitratorController;
 use App\Http\Controllers\Admin\DataManagement\ProvoiderInformationController;
 use App\Http\Controllers\Admin\Ligitation\LigitationController;
 use App\Http\Controllers\Admin\Invoice\InvoiceController;
+use App\Http\Livewire\Ligitation\BasicIntake\Search;
 use App\Models\Arbitrator;
+use App\Models\DenialReason;
+use Illuminate\Http\Request;
+use Revolution\Google\Sheets\Facades\Sheets;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,15 +67,24 @@ Route::get('/settlements',function(){
 Route::resource('data-management',ProvoiderInformationController::class,['names' => [
         'index' => 'data-management',
     ]]);    
-Route::resource('insurance-company',InsuranceCompanyController::class);    
+Route::get('provider-search/{q?}',[ProvoiderInformationController::class,'search']);    
+Route::resource('insurance-company',InsuranceCompanyController::class);  
+Route::get('insurance-search/{q?}',[InsuranceCompanyController::class,'search']);    
 Route::resource('defense-firm',DefenseFirmController::class);    
+Route::get('firm-search/{q?}',[DefenseFirmController::class,'search']);    
+
 Route::resource('judge',JudgeController::class);    
+Route::get('judge-search/{q?}',[JudgeController::class,'search']);    
+
 Route::resource('venue',VenueController::class);    
+Route::get('venue-search/{q?}',[VenueController::class,'search']);    
 Route::resource('arbitrator',ArbitratorController::class);    
+Route::get('arbitrator-search/{q?}',[ArbitratorController::class,'search']);    
 Route::get('/invoices',[InvoiceController::class, 'index'])->name('invoices');
 Route::get('/provider-invoices',[InvoiceController::class, 'providerInvoices']);
 Route::get('/print-invoice',[InvoiceController::class, 'printInvoice'])->name('print_invoice');
 
+Route::resource('denial-reason',DenialReasonController::class, ['names' => 'denial_reason']);    
 
 
 Route::get('ligitation', [LigitationController::class, 'livewireView']);
@@ -85,6 +99,12 @@ Route::post('advance-search', [LigitationController::class, 'advanceSearch'])->n
 Route::post('filling-info', [LigitationController::class, 'updateFillingInfo'])->name('filling-info.store');
 Route::get('settlement-info', [LigitationController::class, 'editsettlementInfo']);
 Route::post('settlement-info', [LigitationController::class, 'savesettlementInfo'])->name('settlement.store');
+Route::post('add-sheet/{id}',function(Request $request,$id){
+   $name=date("d/m/Y h_i_s A"); 
+   Sheets::spreadsheet($id)->addSheet($name);
+   Sheets::sheet($name)->append($request->get('sheet_data'));
+
+})->name('exportSpread');
 
 
 

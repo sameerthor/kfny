@@ -124,7 +124,8 @@ return [
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
-
+    'search_sheet_id' => env('ADVANCE_SEARCH_SHEET'),
+    'bill_sheet_id' => env('BILL_DATA_SHEET'),
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

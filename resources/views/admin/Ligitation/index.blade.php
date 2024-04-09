@@ -79,7 +79,7 @@
               </div>
               <div class="col-md-3">
                 <div class="form-group">
-                  <label class="mb-1">Defense Firm</label>
+                  <label class="mb-1">Carrier Attorney</label>
                   <select name="defense_firm_id" class="form-control" data-rule-required="true">
                     <option selected disabled>Select</option>
                     @foreach($defenceFirmId as $p)
@@ -154,7 +154,7 @@
 
 
 
-      <!-- Defense Firm -->
+      <!-- Carrier Attorney -->
 
       <li class="nav-item" role="presentation">
         <button class="nav-link settlement-info-tab" id="pills-settlement-tab" data-bs-toggle="pill"

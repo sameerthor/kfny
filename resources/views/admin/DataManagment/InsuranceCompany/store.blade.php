@@ -32,16 +32,16 @@
             <div class="row">
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">Address<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="address" id="address" data-rule-required="true">
+                  <label class="mb-1">Address</label>
+                  <input type="text" class="form-control " name="address" id="address">
                   <span class="text-danger error address-error"></span>
                 </div>
 
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">City<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="city" id="city" data-rule-required="true">
+                  <label class="mb-1">City</label>
+                  <input type="text" class="form-control " name="city" id="city">
                   <span class="text-danger error city-error"></span>
                 </div>
               </div>
@@ -49,16 +49,16 @@
             <div class="row">
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">State<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="state" id="state" data-rule-required="true">
+                  <label class="mb-1">State</label>
+                  <input type="text" class="form-control " name="state" id="state">
                   <span class="text-danger error state-error"></span>
                 </div>
 
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">Zip Code<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="zip_code" id="zip_code" data-rule-required="true">
+                  <label class="mb-1">Zip Code</label>
+                  <input type="text" class="form-control " name="zip_code" id="zip_code">
                   <span class="text-danger error zip_code-error"></span>
                 </div>
               </div>
@@ -66,16 +66,16 @@
             <div class="row">
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">NAIC<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="NAIC" id="NAIC" data-rule-required="true">
+                  <label class="mb-1">NAIC</label>
+                  <input type="text" class="form-control " name="NAIC" id="NAIC">
                   <span class="text-danger error NAIC-error"></span>
                 </div>
 
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">DMV<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="DMV" id="DMV" data-rule-required="true">
+                  <label class="mb-1">DMV</label>
+                  <input type="text" class="form-control " name="DMV" id="DMV">
                   <span class="text-danger error DMV-error"></span>
                 </div>
               </div>
@@ -83,16 +83,16 @@
             <div class="row">
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">Phone Number<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="phone_number" id="phone_number" data-rule-required="true">
+                  <label class="mb-1">Phone Number</label>
+                  <input type="text" class="form-control " name="phone_number" id="phone_number">
                   <span class="text-danger error phone_number-error"></span>
                 </div>
 
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">Fax Number<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="fax_number" id="fax_number" data-rule-required="true">
+                  <label class="mb-1">Fax Number</label>
+                  <input type="text" class="form-control " name="fax_number" id="fax_number">
                   <span class="text-danger error fax_number-error"></span>
                 </div>
               </div>
@@ -100,16 +100,16 @@
             <div class="row">
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">Best Contact Person<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="best_contact_person" id="best_contact_person" data-rule-required="true">
+                  <label class="mb-1">Best Contact Person</label>
+                  <input type="text" class="form-control " name="best_contact_person" id="best_contact_person">
                   <span class="text-danger error best_contact_person-error"></span>
                 </div>
 
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">Known Email<span class="text-danger ">*</span></label>
-                  <input type="email" class="form-control " name="known_email" id="known_email" data-rule-required="true">
+                  <label class="mb-1">Known Email</label>
+                  <input type="email" class="form-control " name="known_email" id="known_email">
                   <span class="text-danger error known_email-error"></span>
                 </div>
               </div>
@@ -117,8 +117,8 @@
             <div class="row">
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">Filing Fees<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="filing_fees_date_specific" id="filing_fees_date_specific" data-rule-required="true">
+                  <label class="mb-1">Filing Fees</label>
+                  <input type="text" class="form-control " name="filing_fees_date_specific" id="filing_fees_date_specific">
                   <span class="text-danger error filing_fees_date_specific-error"></span>
                 </div>
 

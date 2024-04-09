@@ -2,9 +2,9 @@
     <div class="pi_detail_wrap  row py-3">
         <div class="pi_detail  ">
             <div class="pi_detail_one ">
-                <div class="pi_detail_list p-1">
-                    <span class="pi_detail_label">Index/AAA</span>
-                    <span class="pi_detail_text">{{!empty($data)?$data->index_number:'N/A'}}</span>
+            <div class="pi_detail_list p-1">
+                    <span class="pi_detail_label">Provider</span>
+                    <span class="pi_detail_text ">{{!empty($data)?@$data['provoiderInformation']['name']:'N/A'}}</span>
                 </div>
                 <div class="pi_detail_list p-1">
                     <span class="pi_detail_label">Status</span>
@@ -12,6 +12,23 @@
                         class="pi_detail_text ">{{!empty($data)?'':'N/A'}}{{@$data['status']=="1"?"Active":""}}{{@$data['status']=="2"?"Appeal":""}}{{@$data['status']=="3"?"Archived":""}}{{@$data['status']=="4"?"Decison
                             - Denied":""}}{{@$data['status']=="5"?"Decison - Lost":""}}{{@$data['status']=="6"?"Decison -
                             Paid":""}}{{@$data['status']=="7"?"Decison - Trial":""}}</span>
+                </div>
+                <div class="pi_detail_list p-1">
+                    <span class="pi_detail_label">Case Type</span>
+                    <span class="pi_detail_text ">{{!empty($data)?'':'N/A'}}{{@$data['is_ligitation']=="2"?"Arbitrator":""}}{{@$data['is_ligitation']=="1"?"Ligitation":""}}{{@$data['is_ligitation']=="3"?"DJ":""}}{{@$data['is_ligitation']=="4"?"Pre Ligitation
+                            - Denied":""}}</span>
+                </div>
+                <div class="pi_detail_list p-1">
+                    <span class="pi_detail_label">County</span>
+                    <span class="pi_detail_text ">{{!empty($data)?@$data['venueCounty']['venue_name']:'N/A'}}</span>
+                </div>
+                <div class="pi_detail_list p-1">
+                    <span class="pi_detail_label">Venue</span>
+                    <span class="pi_detail_text ">{{!empty($data)?@$data['venue']:'N/A'}}</span>
+                </div>
+                <div class="pi_detail_list p-1">
+                    <span class="pi_detail_label">Carrier Attorney</span>
+                    <span class="pi_detail_text ">{{!empty($data)?@$data['defenseFirm']['firm_name']:'N/A'}}</span>
                 </div>
                 <div class="pi_detail_list p-1">
                     <span class="pi_detail_label">Assignor #</span>
@@ -22,10 +39,7 @@
                     <span
                         class="pi_detail_text ">{{!empty($data)?@$data['patient']['insuranceCompany']['name']:'N/A'}}</span>
                 </div>
-                <div class="pi_detail_list p-1">
-                    <span class="pi_detail_label">Provider</span>
-                    <span class="pi_detail_text ">{{!empty($data)?@$data['provoiderInformation']['name']:'N/A'}}</span>
-                </div>
+                
                 <div class="pi_detail_list p-1">
                     <span class="pi_detail_label">Judge</span>
                     <span class="pi_detail_text ">{{!empty($data)?@$data['judge']['name']:'N/A'}}</span>
@@ -71,9 +85,12 @@
                     <tr>
                         <th scope="col">File #</th>
                         <th scope="col">Index #</th>
+                        <th scope="col">Case Type</th>
+                        <th scope="col">County</th>
+                        <th scope="col">Venue</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Judge</th>
                         <th scope="col">Provider</th>
+                        <th scope="col">Carrier Attorney</th>
                         <th scope="col">Total Out</th>
                     </tr>
                 </thead>
@@ -82,11 +99,15 @@
                     <tr class='clickable-row' wire:click.prevent="changeFile({{$res['id']}})">
                         <td>{{$res['id']}}</td>
                         <td>{{$res['index_number']}}</td>
+                        <td>{{@$res['is_ligitation']=="2"?"Arbitrator":""}}{{@$res['is_ligitation']=="1"?"Ligitation":""}}{{@$res['is_ligitation']=="3"?"DJ":""}}{{@$res['is_ligitation']=="4"?"Pre Ligitation
+                            - Denied":""}}</td>
+                        <td>{{@$res['venueCounty']['venue_name']}}</td>    
+                        <td>{{$res['venue']}}</td>    
                         <td>{{$res['status']=="1"?"Active":""}}{{$res['status']=="2"?"Appeal":""}}{{$res['status']=="3"?"Archived":""}}{{$res['status']=="4"?"Decison
                             - Denied":""}}{{$res['status']=="5"?"Decison - Lost":""}}{{$res['status']=="6"?"Decison -
                             Paid":""}}{{$res['status']=="7"?"Decison - Trial":""}}</td>
-                        <td>{{@$res['judge']['name']}}</td>
                         <td>{{@$res['provoiderInformation']['name']}}</td>
+                        <td>{{@$res['defenseFirm']['firm_name']}}</td>
                         <td>{{$res->tableDetails->sum('amount')}}</td>
                     </tr>
                     @endforeach

@@ -1,3 +1,24 @@
+$(document).on('blur', '.provider-search', function () {
+  var q = $(this).val()
+  $.ajax({
+    url: 'provider-search/' + q,
+    method: 'get',
+    beforeSend: function () {
+      $('.loader').fadeIn(300)
+    },
+    success: function (response) {
+      if (response.status == 'success') {
+        $('.ProviderInformation-table').html(response.output)
+      }
+    },
+    complete: function () {
+      setTimeout(function () {
+        $('.loader').fadeOut(300)
+      }, 700)
+    },
+  })
+});
+
 $(document).on('click', '.add-ProviderInformation-modal', function () {
     var id = '#addProviderInformation'
     if ($('.modal').hasClass('modal-create')) {

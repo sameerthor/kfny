@@ -7,6 +7,7 @@ use App\Models\Arbitrator;
 use App\Models\DefenseFirm;
 use App\Models\InsuranceCompany;
 use App\Models\Judge;
+use App\Models\DenialReason;
 use App\Models\Venue;
 use App\Models\ProvoiderInformation;
 use Illuminate\Http\Request;
@@ -24,11 +25,12 @@ class ProvoiderInformationController extends Controller
 
             $DefenseInformation = DefenseFirm::orderBy('id', 'DESC')->paginate(config('app.paginate'));
             $JudgeInformation =  Judge::orderBy('id', 'DESC')->paginate(config('app.paginate'));
+            $denialReasonInformation  =  DenialReason::orderBy('id', 'DESC')->get();
             $venueInformation =  Venue::orderBy('id', 'DESC')->paginate(config('app.paginate'));
             $insuranceInformation = InsuranceCompany::orderBy('id', 'DESC')->paginate(config('app.paginate'));
             $arbitratorInformation =  Arbitrator::orderBy('id', 'DESC')->paginate(config('app.paginate'));
             $provoiderInformation = ProvoiderInformation::orderBy('id', 'DESC')->paginate(config('app.paginate'));
-            return view('admin.data-management', compact('arbitratorInformation','venueInformation','provoiderInformation','insuranceInformation','DefenseInformation','JudgeInformation'));
+            return view('admin.data-management', compact('denialReasonInformation','arbitratorInformation','venueInformation','provoiderInformation','insuranceInformation','DefenseInformation','JudgeInformation'));
         } catch (\Exception $ex) {
             \Log::error($ex);
             return response()->json([
@@ -248,6 +250,34 @@ class ProvoiderInformationController extends Controller
                 'message' => 'Provoider Information deleted successfully !',
                 'output' => $provoiderInformationTable,
             ]);
+        } catch (Exception $ex) {
+            \Log::error($ex);
+            return response()->json([
+                'status' => 'error',
+                'message' => $ex->getMessage(),
+            ]);
+        }
+    }
+
+    public function search($q=null)
+    {
+        try {
+          
+            $query =ProvoiderInformation::orderBy('id', 'DESC');
+            if(!empty($query))
+            {
+                $query->where('name','like','%'.$q.'%');
+            }
+            $provoiderInformation=$query->get();
+            $provoiderInformationTable = view(
+                'admin.DataManagment.ProvoiderInformation.index',
+                compact('provoiderInformation')
+            )->render();
+            return response()->json([
+                'status' => 'success',
+                'output' => $provoiderInformationTable,
+            ]);
+            
         } catch (Exception $ex) {
             \Log::error($ex);
             return response()->json([

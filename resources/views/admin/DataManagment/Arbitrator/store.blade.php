@@ -23,8 +23,8 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                   <div class="form-group">
-                    <label class="mb-1">Email<span class="text-danger ">*</span></label>
-                    <input type="email" class="form-control " name="email" id="email" data-rule-required="true">
+                    <label class="mb-1">Email</label>
+                    <input type="email" class="form-control " name="email" id="email">
                     <span class="text-danger error email-error"></span>
                   </div>
                 </div>

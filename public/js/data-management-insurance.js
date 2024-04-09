@@ -1,3 +1,24 @@
+$(document).on('blur', '.insurance-search', function () {
+  var q = $(this).val()
+  $.ajax({
+    url: 'insurance-search/' + q,
+    method: 'get',
+    beforeSend: function () {
+      $('.loader').fadeIn(300)
+    },
+    success: function (response) {
+      if (response.status == 'success') {
+        $('.insurance-table').html(response.output)
+      }
+    },
+    complete: function () {
+      setTimeout(function () {
+        $('.loader').fadeOut(300)
+      }, 700)
+    },
+  })
+});
+
 $(document).on('click', '.add-Insurance-modal', function () {
     var id = '#addInsurance'
     if ($('.modal').hasClass('modal-create')) {

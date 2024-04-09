@@ -202,4 +202,33 @@ class JudgeController extends Controller
             ]);
         }
     }
+
+    public function search($q=null)
+    {
+        try {
+          
+            $query = Judge::orderBy('id', 'DESC');
+            if(!empty($query))
+            {
+                $query->where('name','like','%'.$q.'%');
+            }
+            $JudgeInformation=$query->get();
+            $JudgeTable = view(
+                'admin.DataManagment.Judge.index',
+                compact('JudgeInformation')
+            )->render();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Information deleted successfully !',
+                'output' => $JudgeTable,
+            ]);
+            
+        } catch (Exception $ex) {
+            \Log::error($ex);
+            return response()->json([
+                'status' => 'error',
+                'message' => $ex->getMessage(),
+            ]);
+        }
+    }
 }

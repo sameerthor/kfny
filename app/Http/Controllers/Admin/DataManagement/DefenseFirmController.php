@@ -205,4 +205,32 @@ class DefenseFirmController extends Controller
             ]);
         }
     }
+
+    public function search($q=null)
+    {
+        try {
+          
+            $query = DefenseFirm::orderBy('id', 'DESC');
+            if(!empty($query))
+            {
+                $query->where('firm_name','like','%'.$q.'%');
+            }
+            $DefenseInformation=$query->get();
+            $DefenseFirmTable = view(
+                'admin.DataManagment.DefenseFirm.index',
+                compact('DefenseInformation')
+            )->render();
+            return response()->json([
+                'status' => 'success',
+                'output' => $DefenseFirmTable,
+            ]);
+            
+        } catch (Exception $ex) {
+            \Log::error($ex);
+            return response()->json([
+                'status' => 'error',
+                'message' => $ex->getMessage(),
+            ]);
+        }
+    }
 }

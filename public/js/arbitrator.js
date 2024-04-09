@@ -1,3 +1,23 @@
+$(document).on('blur', '.arbitrator-search', function () {
+  var q = $(this).val()
+  $.ajax({
+    url: 'arbitrator-search/' + q,
+    method: 'get',
+    beforeSend: function () {
+      $('.loader').fadeIn(300)
+    },
+    success: function (response) {
+      if (response.status == 'success') {
+        $('.arbitrator-table').html(response.output)
+      }
+    },
+    complete: function () {
+      setTimeout(function () {
+        $('.loader').fadeOut(300)
+      }, 700)
+    },
+  })
+});
 $(document).on('click', '.add-arbitrator-modal', function () {
     var id = '#addArbitrator'
     if ($('.modal').hasClass('modal-create')) {

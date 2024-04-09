@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Ligitation\BasicIntake;
 use Livewire\Component;
 use App\Models\BasicIntake;
 use App\Models\BasicIntakeBilling;
+use App\Models\DenialReason;
 
 class BillData extends Component
 {
@@ -18,7 +19,8 @@ class BillData extends Component
         if (!empty($this->basic_intake_id)) {
             $basic_intake_billings = BasicIntake::find($this->basic_intake_id)?->tableDetails;
         }
-        return view('livewire.ligitation.basic-intake.bill-data', ['billing_data' => $basic_intake_billings]);
+        $denial_reasons=DenialReason::all();
+        return view('livewire.ligitation.basic-intake.bill-data', ['billing_data' => $basic_intake_billings,'denial_reasons'=>$denial_reasons]);
     }
 
     public function formdataChange($id)

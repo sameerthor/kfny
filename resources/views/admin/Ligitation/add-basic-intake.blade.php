@@ -165,7 +165,7 @@
         </div>
         <div class="col-lg-12 col-md-4">
           <div class="form-group">
-            <label class="mb-1">Defense Firm<span class="text-danger">*</span></label>
+            <label class="mb-1">Carrier Attorney<span class="text-danger">*</span></label>
             <select name="defense_firm_id" class="form-control" data-rule-required="true">
               <option selected disabled>Select</option>
               @foreach($defenceFirmId as $p)

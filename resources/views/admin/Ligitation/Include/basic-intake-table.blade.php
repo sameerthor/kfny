@@ -11,7 +11,7 @@
             <th scope="col">Policy #</th>
             <th scope="col">Venue County</th>
             <th scope="col">DOA</th>
-            <th scope="col">Defense Firm</th>
+            <th scope="col">Carrier Attorney</th>
             <th scope="col">Insurance Company</th>
             <th scope="col">Status</th>
             <th scope="col" class="action-wrap text-center">Action</th>

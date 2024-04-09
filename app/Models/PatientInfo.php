@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 
 class PatientInfo extends Model
 {
@@ -14,4 +16,14 @@ class PatientInfo extends Model
     {
         return $this->hasOne(InsuranceCompany::class, 'id', 'insurance_company_id');
     }
+
+
+
+      protected function doa(): Attribute
+{
+    return Attribute::make(
+        get: fn ($value) => empty($value)?"":date('d/m/Y', strtotime($value)),
+        set: fn ($value) => date('Y-m-d', strtotime(str_replace('/','-',$value))),
+    );
+}
 }

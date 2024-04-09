@@ -23,8 +23,8 @@
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">Vanue<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="vanue" value="{{$info['vanue']}}" id="vanue" data-rule-required="true">
+                  <label class="mb-1">Vanue</label>
+                  <input type="text" class="form-control " name="vanue" value="{{$info['vanue']}}" id="vanue">
                   <span class="text-danger error vanue-error"></span>
                 </div>
 
@@ -33,16 +33,16 @@
             <div class="row">
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">Court<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="court" value="{{$info['court']}}" id="court" data-rule-required="true">
+                  <label class="mb-1">Court</label>
+                  <input type="text" class="form-control " name="court" value="{{$info['court']}}" id="court">
                   <span class="text-danger error court-error"></span>
                 </div>
 
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">Email<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="email" value="{{$info['email']}}" id="email" data-rule-required="true">
+                  <label class="mb-1">Email</label>
+                  <input type="text" class="form-control " name="email" value="{{$info['email']}}" id="email">
                   <span class="text-danger error email-error"></span>
                 </div>
               </div>
@@ -50,16 +50,16 @@
             <div class="row">
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">Phone Number<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="phone_number" value="{{$info['phone_number']}}" id="phone_number" data-rule-required="true">
+                  <label class="mb-1">Phone Number</label>
+                  <input type="text" class="form-control " name="phone_number" value="{{$info['phone_number']}}" id="phone_number">
                   <span class="text-danger error phone_number-error"></span>
                 </div>
 
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">Address<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="address" value="{{$info['address']}}" id="address" data-rule-required="true">
+                  <label class="mb-1">Address</label>
+                  <input type="text" class="form-control " name="address" value="{{$info['address']}}" id="address">
                   <span class="text-danger error address-error"></span>
                 </div>
               </div>
@@ -68,16 +68,16 @@
             <div class="row">
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">Court Attorney Name<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="court_attorney_name" value="{{$info['court_attorney_name']}}" id="court_attorney_name" data-rule-required="true">
+                  <label class="mb-1">Court Attorney Name</label>
+                  <input type="text" class="form-control " name="court_attorney_name" value="{{$info['court_attorney_name']}}" id="court_attorney_name">
                   <span class="text-danger error court_attorney_name-error"></span>
                 </div>
 
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">Court Attorney Email<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="court_attorney_email" value="{{$info['court_attorney_email']}}" id="court_attorney_email" data-rule-required="true">
+                  <label class="mb-1">Court Attorney Email</label>
+                  <input type="text" class="form-control " name="court_attorney_email" value="{{$info['court_attorney_email']}}" id="court_attorney_email">
                   <span class="text-danger error court_attorney_email-error"></span>
                 </div>
 
@@ -86,8 +86,8 @@
             <div class="row">
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label class="mb-1">Court Attorney Phone Number<span class="text-danger ">*</span></label>
-                  <input type="text" class="form-control " name="court_attorney_phone_number" value="{{$info['court_attorney_phone_number']}}" id="court_attorney_phone_number" data-rule-required="true">
+                  <label class="mb-1">Court Attorney Phone Number</label>
+                  <input type="text" class="form-control " name="court_attorney_phone_number" value="{{$info['court_attorney_phone_number']}}" id="court_attorney_phone_number">
                   <span class="text-danger error court_attorney_phone_number-error"></span>
                 </div>
 

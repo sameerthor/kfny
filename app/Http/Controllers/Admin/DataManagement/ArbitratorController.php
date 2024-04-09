@@ -194,4 +194,33 @@ class ArbitratorController extends Controller
             ]);
         }
     }
+
+    public function search($q=null)
+    {
+        try {
+          
+            $query = Arbitrator::orderBy('id', 'DESC');
+            if(!empty($query))
+            {
+                $query->where('name','like','%'.$q.'%');
+            }
+            $arbitratorInformation=$query->get();
+            $ArbitratorTable = view(
+                'admin.DataManagment.Arbitrator.index',
+                compact('arbitratorInformation')
+            )->render();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Arbitrator deleted successfully !',
+                'output' => $ArbitratorTable,
+            ]);
+            
+        } catch (Exception $ex) {
+            \Log::error($ex);
+            return response()->json([
+                'status' => 'error',
+                'message' => $ex->getMessage(),
+            ]);
+        }
+    }
 }

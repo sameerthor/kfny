@@ -189,4 +189,32 @@ class VenueController extends Controller
             ]);
         }
     }
+
+    public function search($q=null)
+    {
+        try {
+          
+            $query = Venue::orderBy('id', 'DESC');
+            if(!empty($query))
+            {
+                $query->where('venue_name','like','%'.$q.'%');
+            }
+            $venueInformation=$query->get();
+            $VenueTable = view(
+                'admin.DataManagment.Venue.index',
+                compact('venueInformation')
+            )->render();
+            return response()->json([
+                'status' => 'success',
+                'output' => $VenueTable,
+            ]);
+            
+        } catch (Exception $ex) {
+            \Log::error($ex);
+            return response()->json([
+                'status' => 'error',
+                'message' => $ex->getMessage(),
+            ]);
+        }
+    }
 }

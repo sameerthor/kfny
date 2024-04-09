@@ -29,11 +29,11 @@
         </button>
       </li>
 
-      <!-- Defense Firm -->
+      <!-- Carrier Attorney -->
 
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="pills-DefenseFirm-tab" data-bs-toggle="pill" data-bs-target="#pills-DefenseFirm" type="button" role="tab" aria-controls="pills-DefenseFirm" aria-selected="true">
-          Defense Firm
+          Carrier Attorney
         </button>
       </li>
 
@@ -51,6 +51,14 @@
           Arbitrator
         </button>
       </li>
+
+      <!--Denial Reason -->
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-denial-reason-tab" data-bs-toggle="pill" data-bs-target="#pills-denial-reason" type="button" role="tab" aria-controls="pills-denial-reason" aria-selected="false">
+          Denial Reason
+        </button>
+      </li>
+      
     </ul>
 
     <div class="tab-content" id="pills-tabContent">
@@ -59,6 +67,9 @@
       <div class="tab-pane fade show active" id="pills-VenueCounty" role="tabpanel" aria-labelledby="pills-VenueCounty-tab">
         <div class="datamangement_tab">
           <div class="kfnythemes_modal">
+            <div class="col-md-2">
+              <input type="text" class="form-control venue-search" placeholder="Search Venue Name Here.." />
+            </div>
             <!-- Button trigger modal  html start-->
             <div class="button_one">
               <button class="btn add-venue-modal" data-url="{{ route('venue.create') }}" data-bs-toggle="modal" data-bs-target="#ArbitratorModal">
@@ -79,6 +90,9 @@
 
       <div class="tab-pane fade" id="pills-ProviderInformation" role="tabpanel" aria-labelledby="pills-ProviderInformation-tab">
         <div class="kfnythemes_modal">
+          <div class="col-md-2">
+            <input type="text" class="form-control provider-search" placeholder="Search Provider Name Here.." />
+          </div>
           <!-- Button trigger modal  html start-->
           <div class="button_one">
             <button class="btn add-ProviderInformation-modal" data-url="{{ route('data-management.create') }}" data-bs-toggle="modal" data-bs-target="#ArbitratorModal">
@@ -103,6 +117,9 @@
       <!-- Insurance Company start -->
 
       <div class="tab-pane fade" id="pills-InsuranceCompany" role="tabpanel" aria-labelledby="pills-InsuranceCompany-tab">
+        <div class="col-md-2">
+          <input type="text" class="form-control insurance-search" placeholder="Search Insurance Company Here.." />
+        </div>
         <div class="kfnythemes_modal">
           <!-- Button trigger modal  html start-->
           <div class="button_one">
@@ -125,14 +142,17 @@
 
       <!-- Insurance Company end -->
 
-      <!-- Defense Firm start -->
+      <!-- Carrier Attorney start -->
 
       <div class="tab-pane fade" id="pills-DefenseFirm" role="tabpanel" aria-labelledby="pills-DefenseFirm-tab">
+        <div class="col-md-2">
+          <input type="text" class="form-control firm-search" placeholder="Search Firm Name Here.." />
+        </div>
         <div class="kfnythemes_modal">
           <!-- Button trigger modal  html start-->
           <div class="button_one">
             <button class="btn add-defense-firm-modal" data-url="{{ route('defense-firm.create') }}" data-bs-toggle="modal" data-bs-target="#ArbitratorModal">
-              <i class="bi bi-plus-lg"></i> Add Defense Firm
+              <i class="bi bi-plus-lg"></i> Add Carrier Attorney
             </button>
           </div>
           <!-- Button trigger modal  html start-->
@@ -146,12 +166,15 @@
         </div>
       </div>
 
-      <!-- Defense Firm end -->
+      <!-- Carrier Attorney end -->
 
       <!-- Judge  start -->
 
       <div class="tab-pane fade" id="pills-Judge" role="tabpanel" aria-labelledby="pills-Judge-tab">
         <div class="kfnythemes_modal">
+        <div class="col-md-2">
+          <input type="text" class="form-control judge-search" placeholder="Search Judge Name Here.." />
+        </div>
           <!-- Button trigger modal  html start-->
           <div class="button_one">
             <button class="btn add-judge-modal" data-url="{{ route('judge.create') }}" data-bs-toggle="modal" data-bs-target="#ArbitratorModal">
@@ -174,8 +197,11 @@
       <!-- Arbitrator  start -->
 
       <div class="tab-pane fade" id="pills-Arbitrator" role="tabpanel" aria-labelledby="pills-Arbitrator-tab">
-      <div class="datamangement_tab">
+        <div class="datamangement_tab">
           <div class="kfnythemes_modal">
+          <div class="col-md-2">
+          <input type="text" class="form-control arbitrator-search" placeholder="Search Arbitrator Name Here.." />
+        </div>
             <!-- Button trigger modal  html start-->
             <div class="button_one">
               <button class="btn add-arbitrator-modal" data-url="{{ route('arbitrator.create') }}" data-bs-toggle="modal" data-bs-target="#ArbitratorModal">
@@ -191,6 +217,28 @@
       </div>
 
       <!-- Arbitrator Firm end -->
+
+         <!-- Denial Reason  start -->
+
+         <div class="tab-pane fade" id="pills-denial-reason" role="tabpanel" aria-labelledby="pills-denial-reason-tab">
+        <div class="datamangement_tab">
+          <div class="kfnythemes_modal">
+          
+            <!-- Button trigger modal  html start-->
+            <div class="button_one">
+              <button class="btn add-denial-reason-modal" data-url="{{ route('denial_reason.create') }}" data-bs-toggle="modal">
+                <i class="bi bi-plus-lg"></i> Add Denial Reason 
+              </button>
+            </div>
+            <!-- Button trigger modal  html start-->
+          </div>
+          <div class="kfnythemes_table mt-4 denial-reason-table">
+            @include('admin.DataManagment.DenialReason.index')
+          </div>
+        </div>
+      </div>
+
+      <!-- Denial Reason end -->
     </div>
   </div>
 </div>
@@ -203,6 +251,6 @@
 <script src="{{asset('js/judge.js')}}"></script>
 <script src="{{asset('js/venue.js')}}"></script>
 <script src="{{asset('js/arbitrator.js')}}"></script>
-
+<script src="{{asset('js/denial-reason.js')}}"></script>
 @endsection
 @endsection

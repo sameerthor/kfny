@@ -209,4 +209,33 @@ class InsuranceCompanyController  extends Controller
             ]);
         }
     }
+
+    public function search($q=null)
+    {
+        try {
+          
+            $query = InsuranceCompany::orderBy('id', 'DESC');
+            if(!empty($query))
+            {
+                $query->where('insurance_company','like','%'.$q.'%');
+            }
+            $insuranceInformation=$query->get();
+            $InsuranceCompanyTable = view(
+                'admin.DataManagment.InsuranceCompany.index',
+                compact('insuranceInformation')
+            )->render();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Information deleted successfully !',
+                'output' => $InsuranceCompanyTable,
+            ]);
+            
+        } catch (Exception $ex) {
+            \Log::error($ex);
+            return response()->json([
+                'status' => 'error',
+                'message' => $ex->getMessage(),
+            ]);
+        }
+    }
 }

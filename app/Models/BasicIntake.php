@@ -18,7 +18,7 @@ class BasicIntake extends Model
     }
     public function defenseFirm()
     {
-        return $this->hasOne(DefenseFirm::class, 'id', 'defense_firm_id');
+        return $this->hasOne(DefenseFirm::class, 'id', 'carrier_attorney');
     }
 
     public function judge()

@@ -26,11 +26,11 @@ class AddForm extends Component
         $insuranceId = InsuranceCompany::orderBy('id', 'desc')->get();
         ;
         $provoiderId = ProvoiderInformation::orderBy('id', 'desc')->get();
-        $defenceFirmId = DefenseFirm::orderBy('id', 'desc')->get();
+        $defenceFirm = DefenseFirm::orderBy('id', 'desc')->get();
         $venueCounty = Venue::all();
         $judges = Judge::all();
         $info = $this->basicIntakeData;
-        return view('livewire.ligitation.basic-intake.add-form', compact('info', 'judges', 'venueCounty', 'defenceFirmId', 'insuranceId', 'provoiderId'));
+        return view('livewire.ligitation.basic-intake.add-form', compact('info', 'judges', 'venueCounty', 'defenceFirm', 'insuranceId', 'provoiderId'));
     }
     public function formdataChange($id)
     {
@@ -90,9 +90,10 @@ class AddForm extends Component
            $res= PatientInfo::create($data);
            $this->patient_id = $res->id;
         } else {
-            PatientInfo::where('id', $id)->update($data);
+            PatientInfo::find($id)->update($data);
         }
         $this->leftFormStatus = "readonly";
+
     }
 
     public function submitRightForm()
@@ -110,8 +111,11 @@ class AddForm extends Component
             unset($data['created_at']);
             unset($data['updated_at']);
             unset($data['patient']);
+        
             BasicIntake::where('id', $id)->update($data);
         }
         $this->rightFormStatus = "readonly";
+        $this->emit('formdataAdded',$this->basic_intake_id);
+
     }
 }
