@@ -22,7 +22,7 @@ class PatientInfo extends Model
       protected function doa(): Attribute
 {
     return Attribute::make(
-        get: fn ($value) => empty($value)?"":date('d/m/Y', strtotime($value)),
+        get: fn ($value) => empty($value)?"":date('m/d/Y', strtotime($value)),
         set: fn ($value) => date('Y-m-d', strtotime(str_replace('/','-',$value))),
     );
 }

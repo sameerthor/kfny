@@ -189,6 +189,7 @@
     })
     $('.advance-form-select').select2({
       placeholder: 'Select an option',
+      allowClear: true,
     }).on("change", function(e) {
       var mod = $(e.target).attr('wire:model.defer');
       @this.set(mod, e.target.value, true);
@@ -197,7 +198,7 @@
     });
 
     $('.advance-form-datepicker').datetimepicker({
-      format: 'd/m/Y',
+      format: 'm/d/Y',
       timepicker: false,
       mask: true,
       validateOnBlur: true,
@@ -223,7 +224,7 @@
       });
 
       $('.advance-form-datepicker').datetimepicker({
-        format: 'd/m/Y',
+        format: 'm/d/Y',
         timepicker: false,
         mask: true,
         validateOnBlur: true,
@@ -271,7 +272,8 @@
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
       },
       success: function(response) {
-        alert("Data Exported to Google Sheet- https://docs.google.com/spreadsheets/d/" + id + "/edit#gid=543471152")
+        window.open("https://docs.google.com/spreadsheets/d/" + id + "/edit#gid=543471152","_blank")
+
       }
     });
   });

@@ -24,7 +24,7 @@ jQuery('#datetimepicker1').datetimepicker({
 });
 jQuery('#datetimepicker2').datetimepicker({
   timepicker:false,
-  format:'d/m/Y'
+  format:'m/d/Y'
 });
 jQuery('#datetimepicker3').datetimepicker({
   inline:true,
@@ -775,7 +775,7 @@ jQuery(function(){
 <td> </td>
 <td>
 <pre><code class="language-javascript">onSelectDate:function(ct,$i){
-  alert(ct.dateFormat('d/m/Y'))
+  alert(ct.dateFormat('m/d/Y'))
 }</code></pre>
 </td>
 </tr>
@@ -1001,9 +1001,9 @@ $('#input').datetimepicker(validate)
 <h3>setOptions</h3>
 <p>Set datetimepicker's options </p>
 <pre><code class="language-javascript">$('#input').datetimepicker({format: 'd.m.Y'});
-$('#input').datetimepicker('setOptions', {format: 'd/m/Y'});
+$('#input').datetimepicker('setOptions', {format: 'm/d/Y'});
 //or
-$('#input').datetimepicker({format: 'd/m/Y'});
+$('#input').datetimepicker({format: 'm/d/Y'});
 </code></pre>
 <h3>getValue</h3>
 <p>Get current datetimepicker's value (Date object) </p>

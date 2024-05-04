@@ -39,7 +39,7 @@
                     @if(!empty($billing_data))
                     <div class="row mb-1">
                         <div class="col-md-2">
-                            <button id="export-bill-data" type="button" class="btn btn-dark">Export</button>
+                            <button id="export-bill-data" data-file="{{$basic_intake_id}}" type="button" class="btn btn-dark">Export</button>
                         </div>
                     </div>
                     @endif
@@ -249,7 +249,7 @@
             });
 
             $('.bill-form-datepicker').datetimepicker({
-                format: 'd/m/Y',
+                format: 'm/d/Y',
                 timepicker: false,
                 mask: true,
                 validateOnBlur: true,
@@ -266,6 +266,7 @@
 
     $(document).on("click", "#export-bill-data", function() {
         var id = "<?php echo config('app.bill_sheet_id'); ?>";
+        var file_id=$(this).attr('data-file');
         var data = [];
         var sheet_data = [];
         $('.bill_data_table tr').each(function() {
@@ -289,7 +290,8 @@
             url: "<?php echo route('exportSpread', config('app.bill_sheet_id')); ?>",
             method: "POST",
             data: {
-                sheet_data: sheet_data
+                sheet_data: sheet_data,
+                file_id:file_id
             },
             beforeSend: function() {
                 $('.loader').fadeIn(300)
@@ -298,7 +300,8 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
             },
             success: function(response) {
-                alert("Data Exported to Google Sheet- https://docs.google.com/spreadsheets/d/" + id + "/edit#gid=543471152")
+                window.open("https://docs.google.com/spreadsheets/d/" + id + "/edit#gid=543471152","_blank")
+              
             }
         });
     });

@@ -16,7 +16,7 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1"
-                                role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Filing Info</a>
+                                role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Filing Info & Discovery</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="simple-tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2"
@@ -29,9 +29,9 @@
                             <livewire:ligitation.basic-intake.add-form />
 
                         </div>
-                        <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">Tab
-                            2
-                            selected</div>
+                        <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
+                        <livewire:ligitation.filing-info.form />
+                        </div>
                         <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2">Tab
                             3
                             selected</div>

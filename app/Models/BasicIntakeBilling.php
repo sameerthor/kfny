@@ -23,7 +23,7 @@ class BasicIntakeBilling extends Model
     protected function dosFrom(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('d/m/Y', strtotime($value)),
+            get: fn ($value) => empty($value)?"":date('m/d/Y', strtotime($value)),
             set: fn ($value) => date('Y-m-d', strtotime(str_replace('/','-',$value))),
         );
     }
@@ -31,7 +31,7 @@ class BasicIntakeBilling extends Model
     protected function dosTo(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('d/m/Y', strtotime($value)),
+            get: fn ($value) => empty($value)?"":date('m/d/Y', strtotime($value)),
             set: fn ($value) => date('Y-m-d', strtotime(str_replace('/','-',$value))),
         );
     }
@@ -39,28 +39,28 @@ class BasicIntakeBilling extends Model
     protected function verResp(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('d/m/Y', strtotime($value)),
+            get: fn ($value) => empty($value)?"":date('m/d/Y', strtotime($value)),
             set: fn ($value) => date('Y-m-d', strtotime(str_replace('/','-',$value))),
         );
     }
     protected function verReq(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('d/m/Y', strtotime($value)),
+            get: fn ($value) => empty($value)?"":date('m/d/Y', strtotime($value)),
             set: fn ($value) => date('Y-m-d', strtotime(str_replace('/','-',$value))),
         );
     }
     protected function pom(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('d/m/Y', strtotime($value)),
+            get: fn ($value) => empty($value)?"":date('m/d/Y', strtotime($value)),
             set: fn ($value) => date('Y-m-d', strtotime(str_replace('/','-',$value))),
         );
     }
     protected function denialDate(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('d/m/Y', strtotime($value)),
+            get: fn ($value) => empty($value)?"":date('m/d/Y', strtotime($value)),
             set: fn ($value) => date('Y-m-d', strtotime(str_replace('/','-',$value))),
         );
     }

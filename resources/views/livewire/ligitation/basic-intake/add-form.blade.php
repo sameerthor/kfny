@@ -47,7 +47,7 @@
                         <div class="form-group row col-6">
                             <label for="doa" class="col-4 col-form-label">DOA</label>
                             <div class="col-7">
-                                <input id="doa" name="doa" wire:model.defer="leftForm.doa" value="{{!empty($info['patient']['doa'])?date('d/m/Y',strtotime($info['patient']['doa'])):''}}" @if($leftFormStatus=="readonly" ) readonly @endif type="text" class="form-control basic-form-datepicker">
+                                <input id="doa" name="doa" wire:model.defer="leftForm.doa" value="{{!empty($info['patient']['doa'])?date('m/d/Y',strtotime($info['patient']['doa'])):''}}" @if($leftFormStatus=="readonly" ) readonly @endif type="text" class="form-control basic-form-datepicker">
                             </div>
                         </div>
                         <div class="form-group row col-6">
@@ -311,9 +311,6 @@
         });
     });
 </script>
-@endpush
-
-@script
 <script>
     document.addEventListener("livewire:load", function(event) {
         Livewire.hook('message.processed', (el, component) => {
@@ -327,7 +324,7 @@
             });
 
             $('.basic-form-datepicker').datetimepicker({
-                format: 'd/m/Y',
+                format: 'm/d/Y',
                 timepicker: false,
                 mask: true,
                 validateOnBlur: true,
@@ -342,4 +339,7 @@
         });
     });
 </script>
-@endscript
+@endpush
+
+
+
