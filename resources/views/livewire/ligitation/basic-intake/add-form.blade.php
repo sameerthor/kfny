@@ -47,7 +47,7 @@
                         <div class="form-group row col-6">
                             <label for="doa" class="col-4 col-form-label">DOA</label>
                             <div class="col-7">
-                                <input id="doa" name="doa" wire:model.defer="leftForm.doa" value="{{!empty($info['patient']['doa'])?date('m/d/Y',strtotime($info['patient']['doa'])):''}}" @if($leftFormStatus=="readonly" ) readonly @endif type="text" class="form-control basic-form-datepicker">
+                                <input id="doa" name="doa" wire:model.defer="leftForm.doa" value="{{!empty($info['patient']['doa'])?date('m/d/Y',strtotime($info['patient']['doa'])):''}}" @if($leftFormStatus=="readonly" ) readonly @endif type="text" autocomplete="off" class="form-control basic-form-datepicker">
                             </div>
                         </div>
                         <div class="form-group row col-6">
@@ -94,7 +94,6 @@
                                     <option value="pedestrian" {{'pedestrian'==@$info['patient']['eip']?"selected":""}}>Pedestrian</option>
                                     <option value="other" {{'other'==@$info['patient']['eip']?"selected":""}}>Other</option>
                                 </select>
-                                <textarea id="textarea" name="other" placeholder="Enter Description for Other..." cols="40" rows="2" class="form-other-txtarea form-control"></textarea>
                             </div>
                         </div>
                         <div class="form-group row col-6">
@@ -163,7 +162,7 @@
                             <div class="col-7">
                                 <select id="is_ligitation" @if($rightFormStatus=="readonly" ) disabled @endif name="is_ligitation" wire:model.defer="rightForm.is_ligitation" class="custom-select basic-form-select ">
                                     <option @if(empty(@$info['is_ligitation'])) selected @endif></option>
-                                    <option {{'2'==@$info['is_ligitation']?"selected":""}} value="2">Arbitrator</option>
+                                    <option {{'2'==@$info['is_ligitation']?"selected":""}} value="2">Arbitration</option>
                                     <option {{'1'==@$info['is_ligitation']?"selected":""}} value="1">Ligitation</option>
                                     <option {{'3'==@$info['is_ligitation']?"selected":""}} value="3">DJ</option>
                                     <option {{'4'==@$info['is_ligitation']?"selected":""}} value="4">Pre Ligitation</option>
@@ -173,7 +172,14 @@
                         <div class="form-group row">
                             <label for="venue_county" class="col-4 col-form-label">County</label>
                             <div class="col-7">
-                                <select id="venue_county" @if($rightFormStatus=="readonly" ) disabled @endif name="venue_county" wire:model.defer="rightForm.venue_county" class="custom-select basic-form-select ">
+                                <input id="venue_county" @if($rightFormStatus=="readonly" ) readonly @endif value="{{@$info['venue']}}" name="venue" wire:model.defer="rightForm.venue" type="text" class="form-control">
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="adv-venue" class="col-4 col-form-label">Venue</label>
+                            <div class="col-7">
+                                <select id="adv-venue" @if($rightFormStatus=="readonly" ) disabled @endif name="venue_county" wire:model.defer="rightForm.venue_county" class="custom-select basic-form-select ">
                                     <option @if(empty(@$info['venue_county'])) selected @endif></option>
                                     @foreach($venueCounty as $p)
                                     <option {{$p['id']==@$info['venue_county']?"selected":""}} value="{{ $p['id'] }}">{{ $p['venue_name'] ??
@@ -181,13 +187,6 @@
                                     </option>
                                     @endforeach
                                 </select>
-
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="adv-venue" class="col-4 col-form-label">Venue</label>
-                            <div class="col-7">
-                                <input id="adv-venue" @if($rightFormStatus=="readonly" ) readonly @endif value="{{@$info['venue']}}" name="venue" wire:model.defer="rightForm.venue" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -232,13 +231,13 @@
                         <div class="form-group row">
                             <label for="carrier_attorney" class="col-4 col-form-label">Carrier Attny</label>
                             <div class="col-7">
-                            <select @if($rightFormStatus=="readonly" ) disabled @endif name="carrier_attorney" wire:model.defer="rightForm.carrier_attorney" class="custom-select basic-form-select ">
+                                <select @if($rightFormStatus=="readonly" ) disabled @endif name="carrier_attorney" wire:model.defer="rightForm.carrier_attorney" class="custom-select basic-form-select ">
                                     <option @if(empty(@$info['carrier_attorney'])) selected @endif></option>
                                     @foreach($defenceFirm as $p)
                                     <option {{$p['id']==@$info['carrier_attorney']?"selected":""}} value="{{ $p['id'] }}">{{ $p['firm_name'] ?? '-' }}</option>
                                     @endforeach
                                 </select>
-                                                        </div>
+                            </div>
                         </div>
                         <div class="form-group row">
                             <label for="dj_judge_id" class="col-4 col-form-label">Judge</label>
@@ -312,10 +311,26 @@
     });
 </script>
 <script>
+    function matchStart(params, data) {
+        if ($.trim(params.term) === '') {
+            return data;
+        }
+        if (typeof data.text === 'undefined') {
+            return null;
+        }
+        if (data.text.toUpperCase().indexOf(params.term.toUpperCase()) == 0) {
+            return data;
+        }
+        return null;
+    }
+
     document.addEventListener("livewire:load", function(event) {
         Livewire.hook('message.processed', (el, component) => {
             $('.basic-form-select').select2({
                 placeholder: 'Select an option',
+                matcher: function(params, data) {
+                    return matchStart(params, data);
+                }
             }).on("change", function(e) {
                 var mod = $(e.target).attr('wire:model.defer');
                 @this.set(mod, e.target.value, true);
@@ -324,9 +339,9 @@
             });
 
             $('.basic-form-datepicker').datetimepicker({
-                format: 'm/d/Y',
+                format: 'n/j/y',
                 timepicker: false,
-                mask: true,
+                mask: false,
                 validateOnBlur: true,
                 lazyInit: true,
                 onChangeDateTime: function(dp, $input) {
@@ -340,6 +355,3 @@
     });
 </script>
 @endpush
-
-
-

@@ -6,16 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
-
-class FilingInformation extends Model
+class Appeal extends Model
 {
     use HasFactory;
-    protected $table = 'filing_informations';
-    protected $guarded = [];
-    protected $fillable = ['filing_date','amended_filing','date_served','service_type','aos_filing_date','service_complete','ans_due_by','ans_ext','ans_rec','default_letter','default_fileno','default_date','default_deadline','basic_intake_id'];
+    protected $fillable=['basic_intake_id','noa_deadline','noa_filed','appeal_type','appeal_docket','appeal_by','app_brief_due','app_brief_filed','app_response_due','app_response_filed','app_reply_due','app_reply_filed','camp_date','camp_time','camp_location','oral_argument_date','master_arbitrator','app_decision','notes'];
 
-
-    protected function filingDate(): Attribute
+    protected function noaDeadline(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
@@ -23,7 +19,15 @@ class FilingInformation extends Model
         );
     }
 
-    protected function amendedFiling(): Attribute
+    protected function noaFiled(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
+            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
+        );
+    }
+     
+    protected function appBriefDue(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
@@ -31,7 +35,15 @@ class FilingInformation extends Model
         );
     }
 
-    protected function dateServed(): Attribute
+    protected function appBriefFiled(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
+            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
+        );
+    }
+    
+    protected function appResponseDue(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
@@ -39,22 +51,15 @@ class FilingInformation extends Model
         );
     }
 
-    protected function aosFilingDate(): Attribute
+    protected function appResponseFiled(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
             set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
         );
     }
-    protected function serviceComplete(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
-            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
-        );
-    }
-
-    protected function ansDueBy(): Attribute
+    
+    protected function appReplyDue(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
@@ -62,7 +67,7 @@ class FilingInformation extends Model
         );
     }
 
-    protected function ansExt(): Attribute
+    protected function appReplyFiled(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
@@ -70,7 +75,7 @@ class FilingInformation extends Model
         );
     }
 
-    protected function ansRec(): Attribute
+    protected function campDate(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
@@ -78,22 +83,7 @@ class FilingInformation extends Model
         );
     }
 
-    protected function defaultLetter(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
-            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
-        );
-    }
-    protected function defaultDate(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
-            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
-        );
-    }
-
-    protected function defaultDeadline(): Attribute
+    protected function oralArgumentDate(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),

@@ -23,7 +23,7 @@ class PatientInfo extends Model
 {
     return Attribute::make(
         get: fn ($value) => empty($value)?"":date('m/d/Y', strtotime($value)),
-        set: fn ($value) => date('Y-m-d', strtotime(str_replace('/','-',$value))),
+        set: fn ($value) => empty($value)?"":date('Y-m-d', strtotime($value)),
     );
 }
 }

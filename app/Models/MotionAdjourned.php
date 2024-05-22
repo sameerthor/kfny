@@ -6,21 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
-
-class BasicIntakeBilling extends Model
+class MotionAdjourned extends Model
 {
     use HasFactory;
-    protected $table = 'basic_intake_billings';
-    protected $fillable = ['basic_intake_id','dos_from','dos_to','amount','partial_pay','out_st','pom','ver_req','ver_resp','denial_date','denial_reason'];
-    protected $guarded = [];
+    protected $fillable=['motion_id','adj_date','time_on','calender','x_mot_due','x_mot_filed','opp_due','opp_filed','reply_due','reply_filed','x_mot_reply_due'];
 
-    public function DenialReason()
-    {
-        return $this->hasOne(DenialReason::class, 'id', 'denial_reason');
-    }
-
-
-    protected function dosFrom(): Attribute
+    protected function adjDate(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
@@ -28,7 +19,7 @@ class BasicIntakeBilling extends Model
         );
     }
 
-    protected function dosTo(): Attribute
+    protected function xMotDue(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
@@ -36,28 +27,7 @@ class BasicIntakeBilling extends Model
         );
     }
 
-    protected function verResp(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
-            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
-        );
-    }
-    protected function verReq(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
-            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
-        );
-    }
-    protected function pom(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
-            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
-        );
-    }
-    protected function denialDate(): Attribute
+    protected function xMotFiled(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
@@ -65,5 +35,43 @@ class BasicIntakeBilling extends Model
         );
     }
 
+    protected function oppDue(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
+            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
+        );
+    }
 
+    protected function oppFiled(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
+            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
+        );
+    }
+
+    protected function replyDue(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
+            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
+        );
+    }
+
+    protected function replyFiled(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
+            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
+        );
+    }
+
+    protected function xMotReplyDue(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
+            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
+        );
+    }
 }

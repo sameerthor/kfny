@@ -35,7 +35,7 @@ class BillData extends Component
         $data['out_st']=@$data['amount']-@$data['partial_pay'];
         if (empty($id)) {
             BasicIntakeBilling::create($data);
-          
+
         } else {
             unset($data['created_at']);
             unset($data['updated_at']);

@@ -78,8 +78,7 @@
 	<input type="text" id="datetimepicker_format" class="input input-wide"/>
 </body>
 <script src="./jquery.js"></script>
-<script src="node_modules/php-date-formatter/js/php-date-formatter.min.js"></script>
-<script src="node_modules/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script src="../php-date-formatter-master/js/php-date-formatter.min.js"></script>
 <script src="jquery.datetimepicker.js"></script>
 <script>/*
 window.onerror = function(errorMsg) {
@@ -110,7 +109,7 @@ $('.some_class').datetimepicker();
 
 $('#default_datetimepicker').datetimepicker({
 	formatTime:'H:i',
-	formatDate:'d.m.Y',
+	formatDate:'n/j/Y',
 	//defaultDate:'8.12.1986', // it's my birthday
 	defaultDate:'+03.01.1970', // it's my birthday
 	defaultTime:'10:00',
@@ -126,9 +125,7 @@ $('#datetimepicker_mask').datetimepicker({
 });
 
 $('#datetimepicker1').datetimepicker({
-	datepicker:false,
-	format:'H:i',
-	step:5
+	format:'n/j/y',
 });
 $('#datetimepicker2').datetimepicker({
 	yearOffset:222,

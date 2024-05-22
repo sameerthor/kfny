@@ -65,9 +65,9 @@
                             <tr>
                                 <td>{{$res['dos_from']}}</td>
                                 <td>{{$res['dos_to']}}</td>
-                                <td>${{$res['amount']}}</td>
-                                <td>${{$res['partial_pay']}}</td>
-                                <td>${{$res['out_st']}}</td>
+                                <td>${{ number_format($res['amount'], 2) }}</td>
+                                <td>${{ number_format($res['partial_pay'],2)}}</td>
+                                <td>${{ number_format($res['out_st'],2)}}</td>
                                 <td>{{$res['pom']}}</td>
                                 <td>{{$res['ver_req']}}</td>
                                 <td>{{$res['ver_resp']}}</td>
@@ -109,26 +109,26 @@
                                         <div class="form-group col-5 d-flex">
                                             <label for="dos_from" class="col-4 col-form-label">DOS From</label>
                                             <div class="col-8">
-                                                <input id="dos_from" name="dos_from" wire:model.defer="modalData.dos_from" type="text" class="form-control bill-form-datepicker">
+                                                <input id="dos_from" name="dos_from" wire:model.defer="modalData.dos_from" type="text" autocomplete="off"  class="form-control bill-form-datepicker">
                                             </div>
                                         </div>
 
                                         <div class="form-group col-5 d-flex">
                                             <label for="ver_resp" class="col-4 col-form-label">Verif Resp.</label>
                                             <div class="col-8">
-                                                <input id="ver_resp" name="ver_resp" wire:model.defer="modalData.ver_resp" type="text" class="form-control bill-form-datepicker">
+                                                <input id="ver_resp" name="ver_resp" wire:model.defer="modalData.ver_resp" type="text" autocomplete="off"  class="form-control bill-form-datepicker">
                                             </div>
                                         </div>
                                         <div class="form-group col-5 d-flex">
                                             <label for="dos_to" class="col-4 col-form-label">DOS To</label>
                                             <div class="col-8">
-                                                <input id="dos_to" name="dos_to" wire:model.defer="modalData.dos_to" type="text" class="form-control bill-form-datepicker">
+                                                <input id="dos_to" name="dos_to" wire:model.defer="modalData.dos_to" type="text" autocomplete="off"  class="form-control bill-form-datepicker">
                                             </div>
                                         </div>
                                         <div class="form-group col-5 d-flex">
                                             <label for="ver_req" class="col-4 col-form-label">Verif Req.</label>
                                             <div class="col-8">
-                                                <input id="ver_req" name="ver_req" wire:model.defer="modalData.ver_req" type="text" class="form-control bill-form-datepicker">
+                                                <input id="ver_req" name="ver_req" wire:model.defer="modalData.ver_req" type="text" autocomplete="off"  class="form-control bill-form-datepicker">
                                             </div>
                                         </div>
                                         <div class="form-group col-5 d-flex">
@@ -140,7 +140,7 @@
                                         <div class="form-group col-5 d-flex">
                                             <label for="pom" class="col-4 col-form-label">POM Date</label>
                                             <div class="col-8">
-                                                <input id="pom" name="pom" wire:model.defer="modalData.pom" type="text" class="form-control bill-form-datepicker">
+                                                <input id="pom" name="pom" wire:model.defer="modalData.pom" type="text" autocomplete="off"  class="form-control bill-form-datepicker">
                                             </div>
                                         </div>
 
@@ -154,7 +154,7 @@
                                         <div class="form-group col-5 d-flex">
                                             <label for="denial_date" class="col-4 col-form-label">Denial Date</label>
                                             <div class="col-8">
-                                                <input id="denial_date" name="denial_date" wire:model.defer="modalData.denial_date" type="text" class="form-control bill-form-datepicker">
+                                                <input id="denial_date" name="denial_date" wire:model.defer="modalData.denial_date" autocomplete="off"  type="text" class="form-control bill-form-datepicker">
                                             </div>
                                         </div>
 
@@ -200,6 +200,19 @@
 </div>
 @push('custom-scripts')
 <script>
+    function matchStart(params, data) {
+        if ($.trim(params.term) === '') {
+            return data;
+        }
+        if (typeof data.text === 'undefined') {
+            return null;
+        }
+        if (data.text.toUpperCase().indexOf(params.term.toUpperCase()) == 0) {
+            return data;
+        }
+        return null;
+    }
+
     $(document).ready(function() {
         window.addEventListener('billSaved', event => {
 
@@ -240,7 +253,10 @@
 
             $('.bill-form-select').select2({
                 placeholder: 'Select an option',
-                dropdownParent: $("#bill-add-table-popup")
+                dropdownParent: $("#bill-add-table-popup"),
+                matcher: function(params, data) {
+                    return matchStart(params, data);
+                }
             }).on("change", function(e) {
                 var mod = $(e.target).attr('wire:model.defer');
                 @this.set(mod, e.target.value, true);
@@ -249,9 +265,9 @@
             });
 
             $('.bill-form-datepicker').datetimepicker({
-                format: 'm/d/Y',
-                timepicker: false,
-                mask: true,
+                format: 'n/j/y',
+      timepicker: false,
+      mask: false,
                 validateOnBlur: true,
                 lazyInit: true,
                 onChangeDateTime: function(dp, $input) {

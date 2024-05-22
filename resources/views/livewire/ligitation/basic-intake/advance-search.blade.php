@@ -41,7 +41,7 @@
           <div class="form-group  d-flex col-5">
             <label for="eip-dob" class="col-5 col-form-label">DOA</label>
             <div class="col-7">
-              <input id="eip-dob" name="eip-dob" type="text" class="form-control advance-form-datepicker" wire:model.defer="Search.patient.doa">
+              <input id="eip-dob" name="eip-dob" type="text" autocomplete="off" class="form-control advance-form-datepicker" wire:model.defer="Search.patient.doa">
             </div>
           </div>
 
@@ -178,6 +178,20 @@
 </div>
 @push('custom-scripts')
 <script>
+
+  function matchStart(params, data) {
+        if ($.trim(params.term) === '') {
+            return data;
+        }
+        if (typeof data.text === 'undefined') {
+            return null;
+        }
+        if (data.text.toUpperCase().indexOf(params.term.toUpperCase()) == 0) {
+            return data;
+        }
+        return null;
+    }
+
   $(document).ready(function() {
     window.addEventListener('searchAdvance', event => {
       $("#patient-info-form-popup").slideToggle();
@@ -190,6 +204,9 @@
     $('.advance-form-select').select2({
       placeholder: 'Select an option',
       allowClear: true,
+      matcher: function(params, data) {
+                    return matchStart(params, data);
+                }
     }).on("change", function(e) {
       var mod = $(e.target).attr('wire:model.defer');
       @this.set(mod, e.target.value, true);
@@ -198,9 +215,9 @@
     });
 
     $('.advance-form-datepicker').datetimepicker({
-      format: 'm/d/Y',
+      format: 'n/j/y',
       timepicker: false,
-      mask: true,
+      mask: false,
       validateOnBlur: true,
       lazyInit: true,
       onChangeDateTime: function(dp, $input) {
@@ -216,6 +233,9 @@
     Livewire.hook('message.processed', (el, component) => {
       $('.advance-form-select').select2({
         placeholder: 'Select an option',
+        matcher: function(params, data) {
+                    return matchStart(params, data);
+                }
       }).on("change", function(e) {
         var mod = $(e.target).attr('wire:model.defer');
         @this.set(mod, e.target.value, true);

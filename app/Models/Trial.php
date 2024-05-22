@@ -6,29 +6,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
-
-class BasicIntakeBilling extends Model
+class Trial extends Model
 {
     use HasFactory;
-    protected $table = 'basic_intake_billings';
-    protected $fillable = ['basic_intake_id','dos_from','dos_to','amount','partial_pay','out_st','pom','ver_req','ver_resp','denial_date','denial_reason'];
-    protected $guarded = [];
-
-    public function DenialReason()
+    protected $fillable=['basic_intake_id','not_filed','not_received','deadline','sjm_deadline','trial_decision','trial_noe_date'];
+    public function trialDates()
     {
-        return $this->hasOne(DenialReason::class, 'id', 'denial_reason');
+        return $this->hasMany(TrialDate::class);
     }
 
-
-    protected function dosFrom(): Attribute
+    public function judgeData()
     {
-        return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
-            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
-        );
+        return $this->hasOne(Judge::class,'id','judge');
     }
 
-    protected function dosTo(): Attribute
+    protected function notFiled(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
@@ -36,28 +28,7 @@ class BasicIntakeBilling extends Model
         );
     }
 
-    protected function verResp(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
-            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
-        );
-    }
-    protected function verReq(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
-            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
-        );
-    }
-    protected function pom(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
-            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
-        );
-    }
-    protected function denialDate(): Attribute
+    protected function notReceived(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
@@ -65,5 +36,27 @@ class BasicIntakeBilling extends Model
         );
     }
 
+    protected function deadline(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
+            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
+        );
+    }
 
+    protected function sjmDeadline(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
+            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
+        );
+    }
+
+    protected function trialNoeDate(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
+            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
+        );
+    }
 }

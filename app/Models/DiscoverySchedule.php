@@ -20,40 +20,40 @@ class DiscoverySchedule extends Model
     protected function demandDue(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('m/d/Y', strtotime($value)),
-            set: fn ($value) => empty($value)?"":date('Y-m-d', strtotime(str_replace('/','-',$value))),
+            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
+            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
         );
     }
     
     protected function respDue(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('m/d/Y', strtotime($value)),
-            set: fn ($value) => empty($value)?"":date('Y-m-d', strtotime(str_replace('/','-',$value))),
+            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
+            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
         );
     }
     
     protected function ebtDeadlines(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('m/d/Y', strtotime($value)),
-            set: fn ($value) => empty($value)?"":date('Y-m-d', strtotime(str_replace('/','-',$value))),
+            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
+            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
         );
     }
 
     protected function nextDescConf(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('m/d/Y', strtotime($value)),
-            set: fn ($value) => empty($value)?"":date('Y-m-d', strtotime(str_replace('/','-',$value))),
+            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
+            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
         );
     }
 
     protected function noiDue(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => empty($value)?"":date('m/d/Y', strtotime($value)),
-            set: fn ($value) => empty($value)?"":date('Y-m-d', strtotime(str_replace('/','-',$value))),
+            get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
+            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
         );
     }
 }
