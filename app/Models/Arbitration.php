@@ -15,7 +15,7 @@ class Arbitration extends Model
     {
         return Attribute::make(
             get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
-            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
+            set: fn ($value) => empty($value)?"":date('Y-m-d', strtotime($value)),
         );
     }
     
@@ -23,7 +23,7 @@ class Arbitration extends Model
     {
         return Attribute::make(
             get: fn ($value) => empty($value)?"":date('n/j/y', strtotime($value)),
-            set: fn ($value) => empty($value)?"":date('y-n-j', strtotime($value)),
+            set: fn ($value) => empty($value)?"":date('Y-m-d', strtotime($value)),
         );
     }
 

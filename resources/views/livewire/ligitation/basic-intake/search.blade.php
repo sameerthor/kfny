@@ -9,9 +9,7 @@
                 <div class="pi_detail_list p-1">
                     <span class="pi_detail_label">Status</span>
                     <span
-                        class="pi_detail_text ">{{!empty($data)?'':'N/A'}}{{@$data['status']=="1"?"Active":""}}{{@$data['status']=="2"?"Appeal":""}}{{@$data['status']=="3"?"Archived":""}}{{@$data['status']=="4"?"Decison
-                            - Denied":""}}{{@$data['status']=="5"?"Decison - Lost":""}}{{@$data['status']=="6"?"Decison -
-                            Paid":""}}{{@$data['status']=="7"?"Decison - Trial":""}}</span>
+                        class="pi_detail_text ">{{!empty($data)?@$data->statusData?->status:'N/A'}}</span>
                 </div>
                 <div class="pi_detail_list p-1">
                     <span class="pi_detail_label">Case Type</span>

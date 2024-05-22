@@ -5,10 +5,17 @@
 <div class="main_container">
   <div class="invoic_section list_hr">
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+       <!-- Venue County -->
+
+       <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="pills-CaseStatus-tab" data-bs-toggle="pill" data-bs-target="#pills-CaseStatus" type="button" role="tab" aria-controls="pills-CaseStatus" aria-selected="true">
+          Case Status
+        </button>
+      </li>
       <!-- Venue County -->
 
       <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="pills-VenueCounty-tab" data-bs-toggle="pill" data-bs-target="#pills-VenueCounty" type="button" role="tab" aria-controls="pills-VenueCounty" aria-selected="true">
+        <button class="nav-link" id="pills-VenueCounty-tab" data-bs-toggle="pill" data-bs-target="#pills-VenueCounty" type="button" role="tab" aria-controls="pills-VenueCounty" aria-selected="true">
           Venue County
         </button>
       </li>
@@ -62,9 +69,33 @@
     </ul>
 
     <div class="tab-content" id="pills-tabContent">
+         <!-- Case Status start -->
+
+         <div class="tab-pane fade show active" id="pills-CaseStatus" role="tabpanel" aria-labelledby="pills-CaseStatus-tab">
+        <div class="datamangement_tab">
+          <div class="kfnythemes_modal">
+            <div class="col-md-2">
+              <input type="text" class="form-control case-status-search" placeholder="Search Case Status Name Here.." />
+            </div>
+            <!-- Button trigger modal  html start-->
+            <div class="button_one">
+              <button class="btn add-case-status-modal" data-url="{{ route('case-status.create') }}" data-bs-toggle="modal" data-bs-target="#ArbitratorModal">
+                <i class="bi bi-plus-lg"></i> Add Case status
+              </button>
+            </div>
+            <!-- Button trigger modal  html start-->
+          </div>
+          <div class="kfnythemes_table mt-4 case-status-table">
+            @include('admin.DataManagment.CaseStatus.index')
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Status end -->
+
       <!-- Venue County start -->
 
-      <div class="tab-pane fade show active" id="pills-VenueCounty" role="tabpanel" aria-labelledby="pills-VenueCounty-tab">
+      <div class="tab-pane fade" id="pills-VenueCounty" role="tabpanel" aria-labelledby="pills-VenueCounty-tab">
         <div class="datamangement_tab">
           <div class="kfnythemes_modal">
             <div class="col-md-2">
@@ -252,5 +283,6 @@
 <script src="{{asset('js/venue.js')}}"></script>
 <script src="{{asset('js/arbitrator.js')}}"></script>
 <script src="{{asset('js/denial-reason.js')}}"></script>
+<script src="{{asset('js/case-status.js')}}"></script>
 @endsection
 @endsection

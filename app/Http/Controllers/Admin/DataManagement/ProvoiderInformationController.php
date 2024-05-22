@@ -8,6 +8,7 @@ use App\Models\DefenseFirm;
 use App\Models\InsuranceCompany;
 use App\Models\Judge;
 use App\Models\DenialReason;
+use App\Models\CaseStatus;
 use App\Models\Venue;
 use App\Models\ProvoiderInformation;
 use Illuminate\Http\Request;
@@ -30,7 +31,8 @@ class ProvoiderInformationController extends Controller
             $insuranceInformation = InsuranceCompany::orderBy('id', 'DESC')->paginate(config('app.paginate'));
             $arbitratorInformation =  Arbitrator::orderBy('id', 'DESC')->paginate(config('app.paginate'));
             $provoiderInformation = ProvoiderInformation::orderBy('id', 'DESC')->paginate(config('app.paginate'));
-            return view('admin.data-management', compact('denialReasonInformation','arbitratorInformation','venueInformation','provoiderInformation','insuranceInformation','DefenseInformation','JudgeInformation'));
+            $caseStatusInformation = CaseStatus::orderBy('id', 'DESC')->paginate(config('app.paginate'));
+            return view('admin.data-management', compact('caseStatusInformation','denialReasonInformation','arbitratorInformation','venueInformation','provoiderInformation','insuranceInformation','DefenseInformation','JudgeInformation'));
         } catch (\Exception $ex) {
             \Log::error($ex);
             return response()->json([

@@ -11,6 +11,11 @@ class BasicIntake extends Model
     protected $table = 'basic_intakes';
     protected $fillable = ['patient_id','provider_id','dj_judge_id','venue_county','venue','is_ligitation','carrier_attorney','index_number','appeal_docket','status','attorney_notes','notes'];
     protected $guarded = [];
+   
+    public function statusData()
+    {
+        return $this->hasOne(CaseStatus::class, 'id', 'status');
+    }
 
     public function provoiderInformation()
     {

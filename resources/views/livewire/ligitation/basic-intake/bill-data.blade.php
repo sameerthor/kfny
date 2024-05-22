@@ -246,6 +246,11 @@
             $("#popup-outstanding").val(amount - partial_pay)
         });
 
+        $(document).on('blur', '#dos_from', function() {
+            var dos_from=$(this).val();
+            $("#dos_to").val(dos_from)
+        });
+
     });
 
     document.addEventListener("livewire:load", function(event) {

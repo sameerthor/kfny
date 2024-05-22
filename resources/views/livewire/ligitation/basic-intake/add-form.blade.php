@@ -206,14 +206,10 @@
                             <label for="status" class="col-4 col-form-label">Status</label>
                             <div class="col-7">
                                 <select id="status" @if($rightFormStatus=="readonly" ) disabled @endif name="status" wire:model.defer="rightForm.status" class="custom-select basic-form-select ">
-                                    <option @if(empty(@$info['status'])) selected @endif></option>
-                                    <option {{@$info['status']=="1" ?"selected":""}} value="1">Active</option>
-                                    <option {{@$info['status']=="2" ?"selected":""}} value="2">Appeal</option>
-                                    <option {{@$info['status']=="3" ?"selected":""}} value="3">Archived</option>
-                                    <option {{@$info['status']=="4" ?"selected":""}} value="4">Decison - Denied</option>
-                                    <option {{@$info['status']=="5" ?"selected":""}} value="5">Decison - Lost</option>
-                                    <option {{@$info['status']=="6" ?"selected":""}} value="6">Decison - Paid</option>
-                                    <option {{@$info['status']=="7" ?"selected":""}} value="7">Decison - Trial</option>
+                                    <option></option>
+                                    @foreach($case_statuses as $res)
+                                    <option value="{{$res['id']}}">{{$res['status']}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
