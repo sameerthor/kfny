@@ -104,8 +104,8 @@
                             </div>
                             <div class="add-del-button col-4">
                                 @if($leftFormStatus=="readonly")
-                              
-                                <button wire:click.prevent="editable('left')"  id="update-left-button" type="button" class="btn d-flex  justify-content-between"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+
+                                <button wire:click.prevent="editable('left')" id="update-left-button" type="button" class="btn d-flex  justify-content-between"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                         <g clip-path="url(#clip0_956_2256)">
                                             <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" fill="#1B1D21" />
                                         </g>
@@ -318,8 +318,8 @@
                             <div class="add-del-button col-7 
                             ;J0 Z nb">
                                 @if($rightFormStatus=="readonly")
-                               
-                                <button wire:click.prevent="editable('right')"   id="update-right-button" type="button" class="btn d-flex  justify-content-between"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+
+                                <button wire:click.prevent="editable('right')" id="update-right-button" type="button" class="btn d-flex  justify-content-between"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                         <g clip-path="url(#clip0_956_2256)">
                                             <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" fill="#1B1D21" />
                                         </g>
@@ -432,7 +432,6 @@
 </div>
 @push('custom-scripts')
 <script>
-
     function matchStart(params, data) {
         if ($.trim(params.term) === '') {
             return data;
@@ -472,6 +471,77 @@
                 $(".modal-backdrop").remove();
             }
         });
+
+        $(document).on('change', '#service_type,#date_served,#aos_filing_date', function() {
+            serviceCompleteFormula();
+        });
+
+        function serviceCompleteFormula() {
+            var sel = $("#service_type").val();
+            if (sel == '1') {
+
+                $("#service_complete").val($("#date_served").val()).trigger("change");
+            } else if (sel == '2' || sel == '4' || sel == '6') {
+                var aos_filing = $("#aos_filing_date").val();
+                if (aos_filing != "") {
+
+                    $("#service_complete").val(moment(aos_filing, 'M/D/YY').add(10, 'days').format('M/D/YY')).trigger("change");
+
+                } else {
+                    $("#service_complete").val("").trigger("change");
+
+                }
+
+            } else if (sel == '3' || sel == '5') {
+                $("#service_complete").val($("#aos_filing_date").val()).trigger("change");
+            }
+            @this.set($("#service_complete").attr("wire:model.defer"), $("#service_complete").val(), true);
+
+        }
+
+        $(document).on('change', '#service_type,#service_complete', function() {
+            answerDueFormula();
+        });
+
+        function answerDueFormula() {
+            var sel = $("#service_type").val();
+            var service_complete = $("#service_complete").val();
+            if (service_complete != "") {
+
+                if (sel == '1' || sel == '2' || sel == '4' || sel == '5') {
+                    $("#ans_due_by").val(moment(service_complete, 'M/D/YY').add(20, 'days').format('M/D/YY')).trigger("change");
+                } else if (sel == '3' || sel == '6') {
+                    $("#ans_due_by").val(moment(service_complete, 'M/D/YY').add(30, 'days').format('M/D/YY')).trigger("change");
+                }
+
+            } else {
+
+                $("#ans_due_by").val("").trigger("change");
+
+            }
+            @this.set($("#ans_due_by").attr("wire:model.defer"), $("#ans_due_by").val(), true);
+
+        }
+
+        $(document).on('change', '#ans_due_by', function() {
+            var val = $(this).val();
+            if (val != "") {
+                $("#default_date").val(moment(val, 'M/D/YY').add(1, 'day').format('M/D/YY')).trigger("change");
+            } else {
+                $("#default_date").val("").trigger("change");
+            }
+            @this.set($("#default_date").attr("wire:model.defer"), $("#default_date").val(), true);
+        });
+
+        $(document).on('change', '#default_date', function() {
+            var val = $(this).val();
+            if (val != "") {
+                $("#default_deadline").val(moment(val, 'M/D/YY').add(1, 'year').format('M/D/YY')).trigger("change");
+            } else {
+                $("#default_deadline").val("").trigger("change");
+            }
+            @this.set($("#default_deadline").attr("wire:model.defer"), $("#default_deadline").val(), true);
+        });
     });
     document.addEventListener("livewire:load", function(event) {
         Livewire.hook('message.processed', (el, component) => {
@@ -489,8 +559,8 @@
 
             $('.filing-form-datepicker').datetimepicker({
                 format: 'n/j/y',
-      timepicker: false,
-      mask: false,
+                timepicker: false,
+                mask: false,
                 validateOnBlur: true,
                 lazyInit: true,
                 onChangeDateTime: function(dp, $input) {

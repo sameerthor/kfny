@@ -104,7 +104,7 @@
             <!-- Button trigger modal  html start-->
             <div class="button_one">
               <button class="btn add-venue-modal" data-url="{{ route('venue.create') }}" data-bs-toggle="modal" data-bs-target="#ArbitratorModal">
-                <i class="bi bi-plus-lg"></i> Add Venue
+                <i class="bi bi-plus-lg"></i> Add County
               </button>
             </div>
             <!-- Button trigger modal  html start-->

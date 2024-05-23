@@ -44,7 +44,7 @@
                         <td>{{$motion->prima_facie}}</td>
                         <td>{{$motion->judgeData?->name}}</td>
                         <td>{{$motion->part}}</td>
-                        <td>{{$motion->noe_date}}</td>
+                        <td class="motion_noe_date">{{$motion->noe_date}}</td>
                         <td><button class="btn btn-sm btn-dark" wire:click.prevent="editMotion({{$motion['id']}})" type="button" id="view-motion-{{$motion['id']}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <path d="M12.0003 3C17.3924 3 21.8784 6.87976 22.8189 12C21.8784 17.1202 17.3924 21 12.0003 21C6.60812 21 2.12215 17.1202 1.18164 12C2.12215 6.87976 6.60812 3 12.0003 3ZM12.0003 19C16.2359 19 19.8603 16.052 20.7777 12C19.8603 7.94803 16.2359 5 12.0003 5C7.7646 5 4.14022 7.94803 3.22278 12C4.14022 16.052 7.7646 19 12.0003 19ZM12.0003 16.5C9.51498 16.5 7.50026 14.4853 7.50026 12C7.50026 9.51472 9.51498 7.5 12.0003 7.5C14.4855 7.5 16.5003 9.51472 16.5003 12C16.5003 14.4853 14.4855 16.5 12.0003 16.5ZM12.0003 14.5C13.381 14.5 14.5003 13.3807 14.5003 12C14.5003 10.6193 13.381 9.5 12.0003 9.5C10.6196 9.5 9.50026 10.6193 9.50026 12C9.50026 13.3807 10.6196 14.5 12.0003 14.5Z" fill="white" />
@@ -355,7 +355,7 @@
                         <div class="form-group row col-4">
                             <label for="trial_noe_date" class="col-4 col-form-label">Trial NOE Date</label>
                             <div class="col-7">
-                                <input id="trial_noe_date" @if($leftTrialFormStatus=="readonly" ) readonly @endif name="trial_noe_date" wire:model.defer="leftTrialForm.trial_noe_date" type="text" class="form-control motion-form-datepicker" autocomplete="off">
+                                <input id="trial_noe_date" @if($leftTrialFormStatus=="readonly" ) readonly @endif name="trial_noe_date" wire:model.defer="leftTrialForm.trial_noe_date" type="text" class="form-control motion-form-datepicker trial_noe_date" autocomplete="off">
                             </div>
                         </div>
                     </div>
@@ -986,7 +986,7 @@
                                                     <option value="Kings">Kings</option>
                                                     <option value="Nassau">Nassau</option>
                                                 </select>
-                                            </div>                                           
+                                            </div>
                                         </div>
                                         <div class="form-group row col-6">
                                             <label for="oral_argument_date" class="col-4 col-form-label">Oral Argument Date</label>
@@ -1010,13 +1010,13 @@
                                                     <option value="Lost- Reversed">Lost- Reversed</option>
                                                     <option value="Lost- Affirmed">Lost- Affirmed</option>
                                                 </select>
-                                            </div>                                           
+                                            </div>
                                         </div>
                                         <div class="form-group row col-12">
                                             <label for="notes" class="col-4 col-form-label">Notes</label>
                                             <div class="col-7">
-                                            <textarea id="notes" wire:model.defer="appealForm.notes" name="notes" cols="30" rows="2" class="form-control"> </textarea>
-                                            </div>                                           
+                                                <textarea id="notes" wire:model.defer="appealForm.notes" name="notes" cols="30" rows="2" class="form-control"> </textarea>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-buttons">
@@ -1039,7 +1039,6 @@
 </div>
 @push('custom-scripts')
 <script>
-
     function matchStart(params, data) {
         if ($.trim(params.term) === '') {
             return data;
@@ -1102,8 +1101,40 @@
         })
 
         window.addEventListener('addAppeal', event => {
+
             $("#appealForm")[0].reset()
             $('#appeal-popup').modal("show");
+            var dateArray = [];
+            $(".motion_noe_date").each(function() {
+                var val = $(this).text();
+                if (val != "") {
+                    dateArray.push(val)
+                }
+            });
+            $(".trial_noe_date").each(function() {
+                var val = $(this).val();
+                if (val != "") {
+                    dateArray.push(val)
+                }
+            });
+
+            if (dateArray.length > 0) {
+                format = 'M/D/YY',
+                    minDate = moment(dateArray[0], format),
+                    minDateKey = 0;
+
+                for (var i = 1; i < dateArray.length; i++) {
+                    var date = moment(dateArray[i], format);
+                    if (minDate < date) {
+                        minDate = date;
+                        minDateKey = i;
+                    }
+                }
+                $("#noa_deadline").val(moment(minDate, 'M/D/YY').add(30, 'days').format('M/D/YY')).trigger("change");
+                @this.set($("#noa_deadline").attr("wire:model.defer"), $("#noa_deadline").val(), true);
+
+            }
+
         })
 
         window.addEventListener('editAppeal', event => {
@@ -1125,6 +1156,36 @@
             if ($(".modal-backdrop").length > 1) {
                 $(".modal-backdrop").remove();
             }
+        });
+
+        $(document).on('change', '#noa_filed', function() {
+            var val = $(this).val();
+            if (val != "") {
+                $("#app_brief_due").val(moment(val, 'M/D/YY').add(6, 'months').format('M/D/YY')).trigger("change");
+            } else {
+                $("#app_brief_due").val("").trigger("change");
+            }
+            @this.set($("#app_brief_due").attr("wire:model.defer"), $("#app_brief_due").val(), true);
+        });
+
+        $(document).on('change', '#app_brief_filed', function() {
+            var val = $(this).val();
+            if (val != "") {
+                $("#app_response_due").val(moment(val, 'M/D/YY').add(21, 'days').format('M/D/YY')).trigger("change");
+            } else {
+                $("#app_response_due").val("").trigger("change");
+            }
+            @this.set($("#app_response_due").attr("wire:model.defer"), $("#app_response_due").val(), true);
+        });
+
+        $(document).on('change', '#app_response_filed', function() {
+            var val = $(this).val();
+            if (val != "") {
+                $("#app_reply_due").val(moment(val, 'M/D/YY').add(7, 'days').format('M/D/YY')).trigger("change");
+            } else {
+                $("#app_reply_due").val("").trigger("change");
+            }
+            @this.set($("#app_reply_due").attr("wire:model.defer"), $("#app_reply_due").val(), true);
         });
     });
     document.addEventListener("livewire:load", function(event) {
@@ -1169,8 +1230,8 @@
             });
             $('.motion-form-datepicker').datetimepicker({
                 format: 'n/j/y',
-      timepicker: false,
-      mask: false,
+                timepicker: false,
+                mask: false,
                 validateOnBlur: true,
                 lazyInit: true,
                 onChangeDateTime: function(dp, $input) {
@@ -1196,8 +1257,8 @@
             });
             $('.arbitration-form-datepicker').datetimepicker({
                 format: 'n/j/y',
-      timepicker: false,
-      mask: false,
+                timepicker: false,
+                mask: false,
                 validateOnBlur: true,
                 lazyInit: true,
                 onChangeDateTime: function(dp, $input) {
@@ -1223,8 +1284,8 @@
             });
             $('.appeal-form-datepicker').datetimepicker({
                 format: 'n/j/y',
-      timepicker: false,
-      mask: false,
+                timepicker: false,
+                mask: false,
                 validateOnBlur: true,
                 lazyInit: true,
                 onChangeDateTime: function(dp, $input) {
