@@ -53,10 +53,10 @@ class BillData extends Component
         $this->dispatchBrowserEvent('addbill');
     }
 
-    public function editBill($id)
+    public function deleteBill($id)
     {
-        $this->bill_id=$id;
-        $this->dispatchBrowserEvent('editbill');
-        $this->modalData=BasicIntakeBilling::find($id)->toArray();
+    BasicIntakeBilling::find($id)->delete();
+    $this->emit('$refresh');
+
     }
 }
