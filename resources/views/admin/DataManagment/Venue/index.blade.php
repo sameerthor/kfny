@@ -1,7 +1,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Venue Name</th>
+            <th scope="col">County Name</th>
             <th scope="col" class="action-wrap text-center">Action</th>
         </tr>
     </thead>

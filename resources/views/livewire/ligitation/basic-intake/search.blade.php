@@ -18,11 +18,11 @@
                 </div>
                 <div class="pi_detail_list p-1">
                     <span class="pi_detail_label">County</span>
-                    <span class="pi_detail_text ">{{!empty($data)?@$data['venue']:'N/A'}}</span>
+                    <span class="pi_detail_text ">{{!empty($data)?@$data['venueCounty']['venue_name']:'N/A'}}</span>
                 </div>
                 <div class="pi_detail_list p-1">
                     <span class="pi_detail_label">Venue</span>
-                    <span class="pi_detail_text ">{{!empty($data)?@$data['venueCounty']['venue_name']:'N/A'}}</span>
+                    <span class="pi_detail_text ">{{!empty($data)?@$data['venue']:'N/A'}}</span>
                 </div>
                 <div class="pi_detail_list p-1">
                     <span class="pi_detail_label">Carrier Attorney</span>

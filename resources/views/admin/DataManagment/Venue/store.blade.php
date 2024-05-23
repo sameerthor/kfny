@@ -3,7 +3,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header header-class">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Venue</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add County</h1>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal_main_body">
@@ -16,7 +16,7 @@
 
               <div class="col-lg-12 col-md-12">
                 <div class="form-group">
-                  <label class="mb-1">Venue Name<span class="text-danger ">*</span></label>
+                  <label class="mb-1">County Name<span class="text-danger ">*</span></label>
                   <input type="text" class="form-control " name="venue_name" id="venue_name" data-rule-required="true">
                   <span class="text-danger error venue_name-error"></span>
                 </div>

@@ -172,20 +172,25 @@
                         <div class="form-group row">
                             <label for="venue_county" class="col-4 col-form-label">County</label>
                             <div class="col-7">
-                                <input id="venue_county" @if($rightFormStatus=="readonly" ) readonly @endif value="{{@$info['venue']}}" name="venue" wire:model.defer="rightForm.venue" type="text" class="form-control">
-
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="adv-venue" class="col-4 col-form-label">Venue</label>
-                            <div class="col-7">
-                                <select id="adv-venue" @if($rightFormStatus=="readonly" ) disabled @endif name="venue_county" wire:model.defer="rightForm.venue_county" class="custom-select basic-form-select ">
+                                <select id="venue_county" @if($rightFormStatus=="readonly" ) disabled @endif name="venue_county" wire:model.defer="rightForm.venue_county" class="custom-select basic-form-select ">
                                     <option @if(empty(@$info['venue_county'])) selected @endif></option>
                                     @foreach($venueCounty as $p)
                                     <option {{$p['id']==@$info['venue_county']?"selected":""}} value="{{ $p['id'] }}">{{ $p['venue_name'] ??
                 '-' }}
                                     </option>
                                     @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="venue" class="col-4 col-form-label">Venue</label>
+                            <div class="col-7">
+                            <select id="venue" @if($rightFormStatus=="readonly" ) disabled @endif name="venue" wire:model.defer="rightForm.venue" class="custom-select basic-form-select ">
+                                    <option></option>
+                                    <option value="Civil">Civil</option>
+                                    <option value="Supreme">Supreme</option>
+                                    <option value="District">District</option>
+                                    <option value="AAA">AAA</option>
                                 </select>
                             </div>
                         </div>
