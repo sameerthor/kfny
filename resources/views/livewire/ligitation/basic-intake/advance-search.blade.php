@@ -244,9 +244,9 @@
       });
 
       $('.advance-form-datepicker').datetimepicker({
-        format: 'm/d/Y',
+        format: 'n/j/y',
         timepicker: false,
-        mask: true,
+        mask: false,
         validateOnBlur: true,
         lazyInit: true,
         onChangeDateTime: function(dp, $input) {
