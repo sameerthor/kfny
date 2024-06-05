@@ -369,7 +369,7 @@
                             </div>
                             <div class="add-del-button col-4">
                                 @if($leftTrialFormStatus=="readonly")
-                                <button wire:click.prevent="editableTrial('left')" @if(empty($trial_id)) disabled @endif id="update-left-button" type="button" class="btn d-flex  justify-content-between"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <button wire:click.prevent="editableTrial('left')"  id="update-left-button" type="button" class="btn d-flex  justify-content-between"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                         <g clip-path="url(#clip0_956_2256)">
                                             <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" fill="#1B1D21" />
                                         </g>

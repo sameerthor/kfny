@@ -43,6 +43,16 @@ class BasicIntake extends Model
         return $this->hasMany(BasicIntakeBilling::class, 'basic_intake_id', 'id');
     }
 
+    public function trial()
+    {
+        return $this->hasOne(Trial::class, 'basic_intake_id', 'id');
+    }
+
+    public function appeals()
+    {
+        return $this->hasMany(Appeal::class, 'basic_intake_id', 'id');
+    }
+
     public function patient()
     {
         return $this->belongsTo(PatientInfo::class, 'patient_id');

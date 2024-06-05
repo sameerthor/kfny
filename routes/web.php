@@ -8,12 +8,14 @@ use App\Http\Controllers\Admin\DataManagement\DenialReasonController;
 use App\Http\Controllers\Admin\DataManagement\ArbitratorController;
 use App\Http\Controllers\Admin\DataManagement\ProvoiderInformationController;
 use App\Http\Controllers\Admin\DataManagement\CaseStatusController;
+use App\Http\Controllers\Admin\DataManagement\SettledPersonController;
 use App\Http\Controllers\Admin\Ligitation\LigitationController;
 use App\Http\Controllers\Admin\Invoice\InvoiceController;
 use App\Http\Livewire\Ligitation\BasicIntake\Search;
 use App\Models\Arbitrator;
 use App\Models\CaseStatus;
 use App\Models\DenialReason;
+use App\Models\SettledPerson;
 use Illuminate\Http\Request;
 use Revolution\Google\Sheets\Facades\Sheets;
 use Illuminate\Support\Facades\Route;
@@ -90,6 +92,8 @@ Route::get('/provider-invoices', [InvoiceController::class, 'providerInvoices'])
 Route::get('/print-invoice', [InvoiceController::class, 'printInvoice'])->name('print_invoice');
 
 Route::resource('denial-reason', DenialReasonController::class, ['names' => 'denial_reason']);
+Route::resource('settled-person', SettledPersonController::class, ['names' => 'settled_person']);
+Route::get('settled-person-search/{q?}', [SettledPersonController::class, 'search']);
 
 
 Route::get('ligitation', [LigitationController::class, 'livewireView']);

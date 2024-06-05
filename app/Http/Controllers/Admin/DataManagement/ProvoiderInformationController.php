@@ -11,6 +11,7 @@ use App\Models\DenialReason;
 use App\Models\CaseStatus;
 use App\Models\Venue;
 use App\Models\ProvoiderInformation;
+use App\Models\SettledPerson;
 use Illuminate\Http\Request;
 
 class ProvoiderInformationController extends Controller
@@ -32,7 +33,8 @@ class ProvoiderInformationController extends Controller
             $arbitratorInformation =  Arbitrator::orderBy('id', 'DESC')->paginate(config('app.paginate'));
             $provoiderInformation = ProvoiderInformation::orderBy('id', 'DESC')->paginate(config('app.paginate'));
             $caseStatusInformation = CaseStatus::orderBy('id', 'DESC')->paginate(config('app.paginate'));
-            return view('admin.data-management', compact('caseStatusInformation','denialReasonInformation','arbitratorInformation','venueInformation','provoiderInformation','insuranceInformation','DefenseInformation','JudgeInformation'));
+            $settledPersonInformation = SettledPerson::orderBy('id', 'DESC')->paginate(config('app.paginate'));
+            return view('admin.data-management', compact('settledPersonInformation','caseStatusInformation','denialReasonInformation','arbitratorInformation','venueInformation','provoiderInformation','insuranceInformation','DefenseInformation','JudgeInformation'));
         } catch (\Exception $ex) {
             \Log::error($ex);
             return response()->json([

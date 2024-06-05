@@ -18,6 +18,9 @@
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" id="simple-tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="simple-tabpanel-2" aria-selected="false">Motions/Trials/Arbs/Appeals</a>
                     </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="simple-tab-3" data-bs-toggle="tab" href="#simple-tabpanel-3" role="tab" aria-controls="simple-tabpanel-3" aria-selected="false">Settlements</a>
+                    </li>
                 </ul>
                 <div class="tab-content   " id="tab-content">
                     <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
@@ -30,6 +33,9 @@
                     </div>
                     <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2">
                         <livewire:ligitation.motion.form />
+                    </div>
+                    <div class="tab-pane" id="simple-tabpanel-3" role="tabpanel" aria-labelledby="simple-tab-3">
+                        <livewire:ligitation.settlement.form />
                     </div>
                 </div>
             </div>

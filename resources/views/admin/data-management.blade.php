@@ -65,6 +65,13 @@
           Denial Reason
         </button>
       </li>
+
+       <!-- Settled Person -->
+       <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-settled-person-tab" data-bs-toggle="pill" data-bs-target="#pills-settled-person" type="button" role="tab" aria-controls="pills-settled-person" aria-selected="false">
+        Settled Person
+        </button>
+      </li>
       
     </ul>
 
@@ -270,6 +277,28 @@
       </div>
 
       <!-- Denial Reason end -->
+      
+         <!-- Settled Person start -->
+
+         <div class="tab-pane fade" id="pills-settled-person" role="tabpanel" aria-labelledby="pills-settled-person-tab">
+        <div class="datamangement_tab">
+          <div class="kfnythemes_modal">
+          
+            <!-- Button trigger modal  html start-->
+            <div class="button_one">
+              <button class="btn add-settled-person-modal" data-url="{{ route('settled_person.create') }}" data-bs-toggle="modal">
+                <i class="bi bi-plus-lg"></i> Add Settled Person 
+              </button>
+            </div>
+            <!-- Button trigger modal  html start-->
+          </div>
+          <div class="kfnythemes_table mt-4 settled-person-table">
+            @include('admin.DataManagment.SettledPerson.index')
+          </div>
+        </div>
+      </div>
+
+      <!-- Settled Person end -->
     </div>
   </div>
 </div>
@@ -284,5 +313,6 @@
 <script src="{{asset('js/arbitrator.js')}}"></script>
 <script src="{{asset('js/denial-reason.js')}}"></script>
 <script src="{{asset('js/case-status.js')}}"></script>
+<script src="{{asset('js/settled-person.js')}}"></script>
 @endsection
 @endsection
