@@ -211,7 +211,7 @@ class Form extends Component
         }
         @$this->settlementForm['filing_fees'] = $filing_fee;
         if (@$this->settlementForm['type'] == 'Decision' || @$this->settlementForm['type'] == 'Partial Decision') {
-            if ($principle + @$this->settlementForm['attorney_fees'] + @$this->settlementForm['filing_fees'] <= 6000) {
+            if ($principle + (int)@$this->settlementForm['attorney_fees'] + (int)@$this->settlementForm['filing_fees'] <= 6000) {
                 if (empty($basicIntake->trial)) {
                     @$this->settlementForm['costs'] = 20;
                 } elseif (count($basicIntake->trial->trialDates) > 0) {
@@ -276,7 +276,7 @@ class Form extends Component
         }
 
         if (@$this->settlementForm['type'] == 'Decision' || @$this->settlementForm['type'] == 'Partial Decision') {
-            if ($principle + @$this->settlementForm['additional_attorney_fees'] + @$this->settlementForm['additional_interest'] <= 6000) {
+            if ($principle + (int)@$this->settlementForm['additional_attorney_fees'] + (int)@$this->settlementForm['additional_interest'] <= 6000) {
                 if (empty($basicIntake->trial)) {
                     @$this->settlementForm['additional_costs'] = 20;
                 } elseif (count($basicIntake->trial->trialDates) > 0) {
