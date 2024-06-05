@@ -124,7 +124,7 @@
                                 <label for="new_total" class="col-4 col-form-label">New Total</label>
                                 <div class="col-7">
                                     <input id="new_total" wire:blur="calculate" @if($settlementFormStatus=="readonly" ) disabled @endif name="new_total" wire:model.defer="settlementForm.new_total" type="checkbox" class="" autocomplete="off">
-                                    <span>{{ (@$settlementForm['new_total']=="1"?@$settlementForm['new_principle']:@$settlementForm['principle_amount']) + @$settlementForm['interest_amount'] + @$settlementForm['attorney_fees'] +@$settlementForm['filing_fees'] + @$settlementForm['costs'] }}</span>
+                                    <span>{{ (@$settlementForm['new_total']=="1"? (int)@$settlementForm['new_principle']: (int)@$settlementForm['principle_amount']) + (int)@$settlementForm['interest_amount'] + (int)@$settlementForm['attorney_fees'] + (int)@$settlementForm['filing_fees'] + (int)@$settlementForm['costs'] }}</span>
                                 </div>
                             </div>
                             <div class="form-group row col-4">
@@ -312,7 +312,7 @@
             </div>
             @endif
         </div>
-        <h5 style="float:right;">Total Outstanding: <span>{{max((int)((@$settlementForm['new_total']=="1"?@$settlementForm['new_principle']:@$settlementForm['principle_amount']) + @$settlementForm['interest_amount'] + @$settlementForm['attorney_fees'] +@$settlementForm['filing_fees'] + @$settlementForm['costs'])-$settlementChecks->sum('total'), 0)}}</span></h5>
+        <h5 style="float:right;">Total Outstanding: <span>{{max((int)((@$settlementForm['new_total']=="1"?(int)@$settlementForm['new_principle']:(int)@$settlementForm['principle_amount']) + (int)@$settlementForm['interest_amount'] + (int)@$settlementForm['attorney_fees'] + (int)@$settlementForm['filing_fees'] + (int)@$settlementForm['costs'])-$settlementChecks->sum('total'), 0)}}</span></h5>
         <div class="modal fade" id="settlement-check-popup" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                 <div class="modal-content">
