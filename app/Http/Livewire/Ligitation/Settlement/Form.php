@@ -297,7 +297,7 @@ class Form extends Component
             @$this->settlementForm['additional_costs'] = 0;
         }
 
-        if (max((int)($principle + @$this->settlementForm['interest_amount'] + @$this->settlementForm['attorney_fees'] + @$this->settlementForm['filing_fees'] + @$this->settlementForm['costs']) - $this->settlementChecks->sum('total'), 0) == "0" && (@$this->settlementForm['type'] == 'Decision' || @$this->settlementForm['type'] == 'Settlement' || @$this->settlementForm['type'] == 'Voluntary Payment')) {
+        if (max((int)((int)$principle +  (int)@$this->settlementForm['interest_amount'] + (int)@$this->settlementForm['attorney_fees'] + (int)@$this->settlementForm['filing_fees'] + @$this->settlementForm['costs']) - (int)$this->settlementChecks->sum('total'), 0) == "0" && (@$this->settlementForm['type'] == 'Decision' || @$this->settlementForm['type'] == 'Settlement' || @$this->settlementForm['type'] == 'Voluntary Payment')) {
             if (@$this->settlementForm['type'] == 'Decision') {
                 $status = CaseStatus::where('status', 'Decision - Paid')->first();
             } elseif (@$this->settlementForm['type'] == 'Settlement') {
