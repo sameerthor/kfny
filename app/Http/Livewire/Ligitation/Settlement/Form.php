@@ -150,7 +150,7 @@ class Form extends Component
         $basicIntake = BasicIntake::find($this->basic_intake_id);
         if ($field == 'principle_percent') {
             $case_total = $basicIntake->tableDetails->sum('amount');
-            @$this->settlementForm['principle_amount'] = ($case_total / 100) * @$this->settlementForm['principle_percent'];
+            @$this->settlementForm['principle_amount'] = round(($case_total / 100) * @$this->settlementForm['principle_percent'],2);
         }
         if ($field == 'principle_amount') {
             $case_total = $basicIntake->tableDetails->sum('amount');
