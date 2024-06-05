@@ -262,6 +262,7 @@ class Form extends Component
                 $d2 = new DateTime($date1);
                 $Months = $d2->diff($d1);
                 $time = $Months->format("%r%a");
+                $time=abs($time);
             } else {
                 $time = 30;
             }
