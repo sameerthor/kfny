@@ -194,7 +194,7 @@ class Form extends Component
                 $time = 30;
             }
             $time = $time / 30;
-            @$this->settlementForm['interest_amount'] =   round($principle  * 0.02 * $time, 2);
+            @$this->settlementForm['interest_amount'] =   round($principle * (float)@$this->settlementForm['interest_percent']   * 0.02 * $time, 2);
         }
 
         @$this->settlementForm['attorney_fees'] = round((@$this->settlementForm['interest_amount'] + $principle) * 0.2, 2);
