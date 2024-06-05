@@ -161,7 +161,7 @@ class Form extends Component
         $principle = @$this->settlementForm['new_total'] == 1 ? @$this->settlementForm['new_principle'] : $basicIntake->tableDetails->sum('amount');
 
 
-        if (($field == 'interest_percent' || $field == 'new_principle' || $field == 'date' || $field == 'interest_from' || $field == 'interest_from_date' || $field == 'principle_percent' || $field == 'term') && !empty(@$this->settlementForm['interest_from'])) {
+        if (($field == 'interest_percent' || 'total' || $field == 'new_principle' || $field == 'date' || $field == 'interest_from' || $field == 'interest_from_date' || $field == 'principle_percent' || $field == 'term') && !empty(@$this->settlementForm['interest_from'])) {
             $billdata = $basicIntake->tableDetails;
             $outstanding = $billdata->sum('amount') - $billdata->sum('partial_pay');
             @$this->settlementForm['date'] = empty(@$this->settlementForm['date']) ? date('n/j/y') : @$this->settlementForm['date'];
@@ -194,7 +194,8 @@ class Form extends Component
                 $time = 30;
             }
             $time = $time / 30;
-            @$this->settlementForm['interest_amount'] =   round($principle * (float)@$this->settlementForm['interest_percent']   * 0.02 * $time, 2);
+         //   dd($principle );
+            @$this->settlementForm['interest_amount'] =   round($principle * @$this->settlementForm['interest_percent']   * 0.02 * $time, 2);
         }
 
         @$this->settlementForm['attorney_fees'] = round((@$this->settlementForm['interest_amount'] + $principle) * 0.2, 2);

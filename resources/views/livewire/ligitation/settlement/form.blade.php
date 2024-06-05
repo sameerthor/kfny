@@ -123,7 +123,7 @@
                             <div class="form-group row col-4">
                                 <label for="new_total" class="col-4 col-form-label">New Total</label>
                                 <div class="col-7">
-                                    <input id="new_total" wire:blur="calculate" @if($settlementFormStatus=="readonly" ) disabled @endif name="new_total" wire:model.defer="settlementForm.new_total" type="checkbox" class="" autocomplete="off">
+                                    <input id="new_total" wire:blur="calculate('total')" @if($settlementFormStatus=="readonly" ) disabled @endif name="new_total" wire:model.defer="settlementForm.new_total" type="checkbox" class="" autocomplete="off">
                                     <span>{{ (@$settlementForm['new_total']=="1"? (int)@$settlementForm['new_principle']: (int)@$settlementForm['principle_amount']) + (int)@$settlementForm['interest_amount'] + (int)@$settlementForm['attorney_fees'] + (int)@$settlementForm['filing_fees'] + (int)@$settlementForm['costs'] }}</span>
                                 </div>
                             </div>
