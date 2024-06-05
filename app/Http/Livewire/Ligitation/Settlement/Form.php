@@ -270,7 +270,7 @@ class Form extends Component
             @$this->settlementForm['additional_interest'] = round($principle  * 0.2 * $time, 2);
         }
 
-        @$this->settlementForm['additional_attorney_fees'] = (@$this->settlementForm['additional_interest'] + $principle) * 0.2;
+        @$this->settlementForm['additional_attorney_fees'] = round((@$this->settlementForm['additional_interest'] + $principle) * 0.2,);
         if (@$this->settlementForm['additional_attorney_fees'] > 1360) {
             @$this->settlementForm['additional_attorney_fees'] = 1360;
         }
