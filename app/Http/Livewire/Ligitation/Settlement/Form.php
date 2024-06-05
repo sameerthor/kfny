@@ -204,10 +204,10 @@ class Form extends Component
 
         $filing_fee = $basicIntake->patient->insuranceCompany?->filing_fees_date_specific;
         if (!empty($basicIntake->trial)) {
-            $filing_fee = $filing_fee + 40;
+            $filing_fee = (int)$filing_fee + 40;
         }
         if (count($basicIntake->appeals) > 0) {
-            $filing_fee = $filing_fee + 30;
+            $filing_fee = (int)$filing_fee + 30;
         }
         @$this->settlementForm['filing_fees'] = $filing_fee;
         if (@$this->settlementForm['type'] == 'Decision' || @$this->settlementForm['type'] == 'Partial Decision') {
