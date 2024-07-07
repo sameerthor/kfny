@@ -162,8 +162,8 @@
                             <div class="col-7">
                                 <select id="is_ligitation" @if($rightFormStatus=="readonly" ) disabled @endif name="is_ligitation" wire:model.defer="rightForm.is_ligitation" class="custom-select basic-form-select ">
                                     <option @if(empty(@$info['is_ligitation'])) selected @endif></option>
-                                    <option {{'2'==@$info['is_ligitation']?"selected":""}} value="2">Arbitration</option>
                                     <option {{'1'==@$info['is_ligitation']?"selected":""}} value="1">Ligitation</option>
+                                    <option {{'2'==@$info['is_ligitation']?"selected":""}} value="2">Arbitration</option>
                                     <option {{'3'==@$info['is_ligitation']?"selected":""}} value="3">DJ</option>
                                     <option {{'4'==@$info['is_ligitation']?"selected":""}} value="4">Pre Ligitation</option>
                                 </select>

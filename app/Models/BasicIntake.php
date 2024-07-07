@@ -48,6 +48,11 @@ class BasicIntake extends Model
         return $this->hasOne(Trial::class, 'basic_intake_id', 'id');
     }
 
+    public function settlements()
+    {
+        return $this->hasOne(Settlement::class, 'basic_intake_id', 'id');
+    }
+
     public function appeals()
     {
         return $this->hasMany(Appeal::class, 'basic_intake_id', 'id');

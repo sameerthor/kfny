@@ -17,6 +17,11 @@ class Settlement extends Model
         return $this->hasMany(SettlementCheck::class, 'settlement_id', 'id');
     }
 
+    public function basic_intake()
+    {
+        return $this->belongsTo(BasicIntake::class, 'basic_intake_id');
+    }
+
     protected function date(): Attribute
     {
         return Attribute::make(
