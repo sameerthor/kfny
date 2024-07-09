@@ -1,8 +1,8 @@
 <div>
     <style>
-        .total_table td{
-                border: 1px solid black;
-                padding: 5px;
+        .total_table td {
+            border: 1px solid black;
+            padding: 5px;
         }
     </style>
     <div class="py-3">
@@ -11,7 +11,8 @@
                 <label for="filing_invoice">Invoice: </label>
                 <input type="text" id="filing_invoice" wire:model="invoice_id">
                 @if(!empty($invoice_data))
-                <label>Date Created: {{date('m/d/Y',strtotime($invoice_data->created_at))}}</label>
+                <label class="mx-4"><b>Date Created:</b> {{date('m/d/Y',strtotime($invoice_data->created_at))}}</label>
+                <label class="mx-4"><b>Invoice Status:</b> <span id="filing_invoice_status"></span></label>
                 @endif
             </div>
 
@@ -72,7 +73,7 @@
             </tr>
             <tr>
                 <td>Outstanding Total </td>
-                <td>${{number_format(max(@$f_total-$invoice_data->invoice_checks->sum('amount'),0),2)}}</td>
+                <td id="out_val">${{number_format(max(@$f_total-$invoice_data->invoice_checks->sum('amount'),0),2)}}</td>
             </tr>
 
         </table>
@@ -102,7 +103,7 @@
                 <tbody>
                     @if(!empty($invoice_data))
                     @foreach($invoice_data->invoice_checks as $res)
-                    
+
                     <tr style="cursor: pointer;">
                         <td>{{$res['check_number']}}</td>
                         <td>{{$res['check_date']}}</td>
@@ -191,6 +192,9 @@
 @push('custom-scripts')
 <script>
     $(document).ready(function() {
+
+     
+        
         window.addEventListener('addCheck', event => {
             $("#checkForm")[0].reset()
             $('#check-popup').modal("show");
@@ -209,7 +213,13 @@
             Livewire.hook('message.processed', (el, component) => {
 
 
+                if($("#out_val").text()=="$0.00")
+            {
+                $("#filing_invoice_status").html("Paid")
 
+            }else{
+                $("#filing_invoice_status").html("Unpaid")
+            }
                 $('.check-form-datepicker').datetimepicker({
                     format: 'n/j/y',
                     timepicker: false,

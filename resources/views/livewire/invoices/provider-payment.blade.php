@@ -11,7 +11,9 @@
                 <label for="filing_invoice">Invoice: </label>
                 <input type="text" id="filing_invoice" wire:model="invoice_id">
                 @if(!empty($invoice_data))
-                <label>Date Created: {{date('m/d/Y',strtotime($invoice_data->created_at))}}</label>
+                <label class="mx-4"><b>Date Created:</b> {{date('m/d/Y',strtotime($invoice_data->created_at))}}</label>
+                <label class="mx-4"><b>Invoice Status:</b> <span id="provider_invoice_status"></span></label>
+
                 @endif
             </div>
 
@@ -82,6 +84,10 @@
             <tr>
                 <td>Net to Provider</td>
                 <td>${{number_format(@$p_total+@$i_total+@$f_total-@$l_total,2)}}</td>
+            </tr>
+            <tr>
+                <td>Outstanding</td>
+                <td id="pro_out_val">${{number_format(max(@$p_total+@$i_total+@$f_total-@$l_total-$invoice_data->provider_invoice_checks->sum('amount'),0),2)}}</td>
             </tr>
         </table>
         @endif
@@ -216,7 +222,13 @@
         document.addEventListener("livewire:load", function(event) {
             Livewire.hook('message.processed', (el, component) => {
 
+                if($("#pro_out_val").text()=="$0.00")
+            {
+                $("#provider_invoice_status").html("Paid")
 
+            }else{
+                $("#provider_invoice_status").html("Unpaid")
+            }
 
                 $('.provider-check-form-datepicker').datetimepicker({
                     format: 'n/j/y',

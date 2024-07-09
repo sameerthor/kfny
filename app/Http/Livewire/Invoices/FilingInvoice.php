@@ -12,6 +12,7 @@ class FilingInvoice extends Component
     public $provider_filings = [];
     public $provider_ids;
     public $selected_filing = [];
+
     protected $listeners = ['providerChange'];
 
 
@@ -52,7 +53,7 @@ class FilingInvoice extends Component
     public function generate()
     {
         $invoice = new Invoice;
-        $invoice->type==1;
+        $invoice->type=1;
         $invoice->save();
         BasicIntake::whereIn('id', $this->selected_filing)->update(['invoice_id' => $invoice->id]);
         $this->dispatchBrowserEvent('filingPaymentTab');

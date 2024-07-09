@@ -14,6 +14,8 @@ class FilingPayment extends Component
     public $check_id;
     public $checkForm;
     public $invoice_data = '';
+    public $invoice_status;
+
     public function render()
     {
 
