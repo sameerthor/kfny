@@ -85,7 +85,7 @@
                         <td style="padding: 4px; border: 1px solid #000;">{{$res['basic_intake']['id']}}</td>
                         <td style="padding: 4px; border: 1px solid #000;" >{{@$res['basic_intake']['patient']['first_name']}} {{@$res['basic_intake']['patient']['last_name']}}</td>
                         <td style="padding: 4px; border: 1px solid #000;">{{@$res['basic_intake']['provoiderInformation']['name']}}</td>
-                        <td style="padding: 4px; border: 1px solid #000;">{{$res->checks->last()->check}}
+                        <td style="padding: 4px; border: 1px solid #000;">{{$res->checks()->where(function($query){$query->orWhereNotNull("principle")->orWhereNotNull("interest");})->first()?->check}}
                         <td style="padding: 4px; border: 1px solid #000;">${{$res['new_total']==1?number_format($res['new_principle'],2):number_format($res['priciple_amount'],2)}}</td>
                         <td style="padding: 4px; border: 1px solid #000;">${{number_format($res['interest_amount'],2)}}</td>
                         <td style="padding: 4px; border: 1px solid #000;"><?php

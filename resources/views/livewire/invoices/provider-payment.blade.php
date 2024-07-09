@@ -51,7 +51,7 @@
                         <td>{{@$res['basic_intake']['patient']['first_name']}} {{@$res['basic_intake']['patient']['last_name']}}</td>
                         <td>{{$res['basic_intake']['patient']['claim_number']}}</td>
                         <td>{{$res['basic_intake']['patient']['doa']}}</td>
-                        <td>{{$res->checks->last()->check}}
+                        <td>{{$res->checks()->where(function($query){$query->orWhereNotNull("principle")->orWhereNotNull("interest");})->first()?->check}}
                         <td>{{$res['new_total']==1?$res['new_principle']:$res['priciple_amount']}}</td>
                         <td>{{$res['interest_amount']}}</td>
                         <td><?php
