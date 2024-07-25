@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string("witness_fee_demanded")->nullable();
             $table->string("witness_fee_agreed")->nullable();
             $table->string("witness_fee_received")->nullable();
+            $table->string("eou_withdrawl_date")->nullable();
             $table->string("witness_fee_outstanding")->nullable();
             $table->string("eou_transcript_received")->nullable();
             $table->string("eou_transcript_deadline")->nullable();
