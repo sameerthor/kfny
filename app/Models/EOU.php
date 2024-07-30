@@ -14,6 +14,11 @@ class EOU extends Model
         'assigner', 'claim_number', 'eou_date', 'eou_time', 'eou_location', 'eou_witness', 'eou_attorney', 'witness_fee_demanded', 'witness_fee_agreed', 'witness_fee_received', 'eou_withdrawl_date', 'witness_fee_outstanding', 'eou_transcript_received', 'eou_transcript_deadline', 'eou_transcript_sent', 'first_post_eou_verification', 'response_deadline', 'second_post_eou_verification', 'response_post_eou_verification', 'denial_date', 'person_settled', 'settlement_date', 'email_contact', 'phone_contact', 'principle_settled', 'attorney_fees_settled', 'principle_settled_outstanding', 'attorney_fees_settled_outstanding', 'principle_received', 'principle_received_date', 'attorney_fees_received', 'attorney_fees_received_date','notes'
     ];
 
+    public function insuranceCompany()
+    {
+        return $this->hasOne(InsuranceCompany::class, 'id', 'insurance_company');
+    }
+
     public function EOULetter()
     {
         return $this->hasMany(EOULetter::class, 'id', 'eou_id');
