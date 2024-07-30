@@ -19,6 +19,11 @@ class EOU extends Model
         return $this->hasOne(InsuranceCompany::class, 'id', 'insurance_company');
     }
 
+    public function provoiderInformation()
+    {
+        return $this->hasOne(ProvoiderInformation::class, 'id', 'provider');
+    }
+
     public function EOULetter()
     {
         return $this->hasMany(EOULetter::class, 'id', 'eou_id');

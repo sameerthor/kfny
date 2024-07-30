@@ -8,6 +8,7 @@ use App\Models\EOU;
 use App\Models\EOULetter;
 use Livewire\Component;
 
+
 class Form extends Component
 {
     public $formStatus = "readonly";
@@ -17,6 +18,7 @@ class Form extends Component
     public $eouLetterForm;
     public $searchForm;
     public $searchResults;
+    public $main_search;
     public function render()
     {
         $EOU_Letters = EOULetter::where("eou_id", $this->eou_id)->get();
@@ -36,6 +38,9 @@ class Form extends Component
     {
         $data = $this->eouForm;
         $id = $this->eou_id;
+        $data['witness_fee_outstanding'] = ((float)@$data['witness_fee_agreed']) - (float)@$data['witness_fee_received'];
+        $data['principle_settled_outstanding'] = (float)@$data['principle_settled'] - (float)@$data['principle_received'];
+        $data['attorney_fees_settled_outstanding'] = (float)@$data['attorney_fees_settled'] - (float)@$data['attorney_fees_received'];
         if (empty($id)) {
             $r = EOU::create($data);
             $this->eou_id = $r->id;
@@ -133,6 +138,45 @@ class Form extends Component
             }
         }
         $this->searchResults = $query->get();
+    }
 
+    public function resetForm()
+    {
+        $this->dispatchBrowserEvent('resetAdvance');
+        $this->searchResults = [];
+        $this->searchForm = [];
+    }
+
+    public function ViewEOU($id)
+    {
+        $this->eou_id = $id;
+        $this->eouForm = EOU::where('id', $id)->get()->toArray()[0];
+        $this->formStatus = "editable";
+        $this->dispatchBrowserEvent('searchAdvance');
+    }
+
+    public function deleteEOU($id)
+    {
+        EOU::find($id)->delete();
+        EOULetter::where('eou_id', $id)->delete();
+        if ($id == $this->eou_id) {
+            $this->eou_id = null;
+            $this->eouForm = null;
+        }
+        $this->advanceSearch();
+    }
+
+    public function search()
+    {
+       $this->resetForm();
+       if(array_key_exists('insurance_company',$this->main_search))
+       {
+        $this->searchForm['insurance_company']=$this->main_search['insurance_company'];
+       }
+       if(array_key_exists('provider',$this->main_search))
+       {
+        $this->searchForm['provider']=$this->main_search['provider'];
+       }
+       $this->advanceSearch();
     }
 }
