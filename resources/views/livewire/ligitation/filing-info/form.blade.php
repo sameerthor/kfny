@@ -187,6 +187,57 @@
                         </div>
                         @endif
                         @endif
+                        @if(!empty($discovery))
+                        <div class="col-md-9">
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-sm sky-btn" wire:click.prevent="addDiscAppearance()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <g clip-path="url(#clip0_956_2256)">
+                                        <path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z" fill="#1B1D21"></path>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_956_2256">
+                                            <rect width="24" height="24" fill="white"></rect>
+                                        </clipPath>
+                                    </defs>
+                                </svg> Add Discv. Appearances</button>
+                        </div>
+                        @if(count($discovery->appearances)>0)
+                        <div class="table-responsive basic-inteke-table py-3">
+                            <table class="table accordion bill-data-table-d ">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Discovery Appearances</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Time</th>
+                                        <th scope="col">Location</th>
+                                        <th scope="col">In Person or Virtual</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($discovery->appearances as $res)
+                                    <tr>
+                                        <td>{{$res->appearance_type}}</td>
+                                        <td>{{$res->date}}</td>
+                                        <td>{{$res->time}}</td>
+                                        <td>{{$res->location}}</td>
+                                        <td>{{$res->inperson_vertual}}</td>
+                                        <td><button class="btn btn-sm btn-dark" wire:click.prevent="editDiscAppearance({{$res['id']}})" type="button" id="view-schedule-{{$res['id']}}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M12.0003 3C17.3924 3 21.8784 6.87976 22.8189 12C21.8784 17.1202 17.3924 21 12.0003 21C6.60812 21 2.12215 17.1202 1.18164 12C2.12215 6.87976 6.60812 3 12.0003 3ZM12.0003 19C16.2359 19 19.8603 16.052 20.7777 12C19.8603 7.94803 16.2359 5 12.0003 5C7.7646 5 4.14022 7.94803 3.22278 12C4.14022 16.052 7.7646 19 12.0003 19ZM12.0003 16.5C9.51498 16.5 7.50026 14.4853 7.50026 12C7.50026 9.51472 9.51498 7.5 12.0003 7.5C14.4855 7.5 16.5003 9.51472 16.5003 12C16.5003 14.4853 14.4855 16.5 12.0003 16.5ZM12.0003 14.5C13.381 14.5 14.5003 13.3807 14.5003 12C14.5003 10.6193 13.381 9.5 12.0003 9.5C10.6196 9.5 9.50026 10.6193 9.50026 12C9.50026 13.3807 10.6196 14.5 12.0003 14.5Z" fill="white" />
+                                                </svg></button>
+                                            <button class="btn btn-sm sky-btn" id="delete-schedule-{{$res['id']}}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z" fill="#1B1D21" />
+                                                </svg> </button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        @endif
+                        @endif
                         <div class="form-group row col-6">
                             <label for="d_demands" class="col-4 col-form-label">D. Demands</label>
                             <div class="col-7">
@@ -429,6 +480,78 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="appearance-popup" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Discovery Appearance</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="add-bill-popup-form-wrap">
+                        <div class="add-bill-popup-form-inner">
+                            <div class="add-bill-popup-form">
+                                <form wire:submit.prevent="submitAppearanceForm" id="appearanceForm">
+                                    <div class="form-fields row">
+                                        <div class="form-group col-5 d-flex">
+                                            <label for="appearance_type" class="col-4 col-form-label">Appearance Type </label>
+                                            <div class="col-8">
+                                                <select id="appearance_type" name="appearance_type" wire:model.defer="appModalData.appearance_type" class="custom-select">
+                                                    <option></option>
+                                                    <option>Pre. Conf</option>
+                                                    <option>Comp. Conf</option>
+                                                    <option>Status Conf</option>
+                                                    <option>ADR</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6 d-flex">
+                                            <label for="date" class="col-4 col-form-label">Date</label>
+                                            <div class="col-8">
+                                                <input id="date" name="date" wire:model.defer="appModalData.date" type="text" class="form-control filing-form-datepicker" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6 d-flex">
+                                            <label for="time" class="col-4 col-form-label">Time</label>
+                                            <div class="col-8">
+                                                <input id="time" name="time" wire:model.defer="appModalData.time" type="text" class="form-control" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-6 d-flex">
+                                            <label for="location" class="col-4 col-form-label">Location</label>
+                                            <div class="col-8">
+                                                <input id="location" name="location" wire:model.defer="appModalData.location" type="text" class="form-control" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-5 d-flex">
+                                            <label for="inperson_vertual" class="col-4 col-form-label">Appearance Type </label>
+                                            <div class="col-8">
+                                                <select id="inperson_vertual" name="inperson_vertual" wire:model.defer="appModalData.inperson_vertual" class="custom-select">
+                                                    <option></option>
+                                                    <option>In Person</option>
+                                                    <option>Virtual</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-buttons">
+                                        <div class=" d-flex">
+
+                                            <button class="btn btn-dark" id="save-bill" type="submit">Save
+                                                changes</button>
+                                            <button type="button" class="btn sky-btn" data-bs-dismiss="modal">Cancel</button>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @push('custom-scripts')
 <script>
@@ -458,6 +581,20 @@
 
         window.addEventListener('editSchedule', event => {
             $('#schedule-popup').modal("show");
+        })
+
+        window.addEventListener('saveAppearance', event => {
+
+            $('#appearance-popup').modal("hide");
+        })
+
+        window.addEventListener('addAppearance', event => {
+            $("#appearanceForm")[0].reset()
+            $('#appearance-popup').modal("show");
+        })
+
+        window.addEventListener('editAppearance', event => {
+            $('#appearance-popup').modal("show");
         })
 
         $(document).on('show.bs.modal', '.modal', function() {

@@ -12,7 +12,17 @@ class EOULetter extends Model
     protected $fillable = [
         'eou_id', 'eou_letter_date', 'date_requested', 'eou_response_letter', 'adjourned_date'
     ];
-
+    
+    public function eou()
+    {
+      return $this->belongsTo(EOU::class,'eou_id','id');
+    }
+    
+    public function assignedTo($type, $column)
+    {
+      return $this->hasMany(EmployeeCalenderRelation::class, 'appearance_id', 'id')->where(['appearance_type' => $type, 'appearance_column' => $column]);
+    }
+    
     protected function eouLetterDate(): Attribute
     {
         return Attribute::make(

@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\DataManagement\CaseStatusController;
 use App\Http\Controllers\Admin\DataManagement\SettledPersonController;
 use App\Http\Controllers\Admin\Ligitation\LigitationController;
 use App\Http\Controllers\Admin\Invoice\InvoiceController;
+use App\Http\Controllers\Admin\CalenderController;
+use Spatie\Permission\Models\Role;
 use App\Http\Livewire\Ligitation\BasicIntake\Search;
 use App\Models\Arbitrator;
 use App\Models\CaseStatus;
@@ -46,9 +48,11 @@ Route::group(['middleware' => 'auth'], function () {
         return view('admin.reports');
     })->name('reports');
 
-    Route::get('/calender', function () {
-        return view('admin.calender');
-    })->name('calender');
+    Route::get('/calender', [CalenderController::class, 'index'])->name('calender');
+    Route::get('/calender-data', [CalenderController::class, 'calenderData'])->name('calender.data');
+    Route::post('/update-calender-event', [CalenderController::class, 'updateCalenderEvent'])->name('update.calender.data');
+
+
 
     // Route::get('/data-management',function(){
     //     return view('admin.data-management');
@@ -111,17 +115,25 @@ Route::post('settlement-info', [LigitationController::class, 'savesettlementInfo
 Route::post('add-sheet/{id}', function (Request $request, $id) {
     $file_id = $request->get('file_id');
     $name = empty($file_id) ? date("m/d/Y h_i_s A") : 'File#' . $file_id;
-    try{
+    try {
         Sheets::spreadsheet($id)->addSheet($name);
         Sheets::sheet($name)->append($request->get('sheet_data'));
-    }catch(Exception $e)
-    {
+    } catch (Exception $e) {
         Sheets::sheet($name)->update($request->get('sheet_data'));
     }
-
-  
 })->name('exportSpread');
 
+Route::get('/employee-management', [App\Http\Controllers\Admin\EmployeeController::class, 'index'])->name('employee.list');
+Route::post('/employee', [App\Http\Controllers\Admin\EmployeeController::class, 'employees'])->name('employee.get');
+Route::post('/add-employee', [App\Http\Controllers\Admin\EmployeeController::class, 'add_employee'])->name('employee.add');
+Route::post('/edit-employee', [App\Http\Controllers\Admin\EmployeeController::class, 'edit_employee'])->name('employee.edit');
+Route::post('/update-employee', [App\Http\Controllers\Admin\EmployeeController::class, 'update_employee'])->name('employee.update');
+Route::post('/delete-employee', [App\Http\Controllers\Admin\EmployeeController::class, 'delete_employee'])->name('employee.delete');
+
+Route::get('/add-role', function () {
+
+    $role = Role::create(['name' => 'employee']);
+});
 
 
 Auth::routes();

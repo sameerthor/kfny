@@ -59,4 +59,11 @@ class BillData extends Component
     $this->emit('$refresh');
 
     }
+
+    public function editBill($id)
+    {
+        $this->bill_id=$id;
+        $this->dispatchBrowserEvent('editbill');
+        $this->modalData=BasicIntakeBilling::find($id)->toArray();
+    }
 }

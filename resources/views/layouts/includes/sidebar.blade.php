@@ -159,6 +159,24 @@
         </div>
 
     </a>
+    <a href="{{URL('/employee-management')}}">
+        <div class="menu_section_item {{ request()->routeIs('employee.list') ? 'kfny_active' : ''  }}">
+            <div class="menu_icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <g clip-path="url(#clip0_75_725)">
+                        <path d="M17.5 2.49334V17.5067C17.4983 17.7255 17.4105 17.9349 17.2557 18.0896C17.1008 18.2443 16.8914 18.3318 16.6725 18.3333H3.3275C3.10818 18.3333 2.89783 18.2463 2.74266 18.0913C2.5875 17.9363 2.50022 17.726 2.5 17.5067V2.49334C2.50175 2.27449 2.58951 2.06511 2.74435 1.91043C2.89918 1.75576 3.10865 1.6682 3.3275 1.66667H16.6725C17.1292 1.66667 17.5 2.03667 17.5 2.49334ZM15.8333 3.33334H4.16667V16.6667H15.8333V3.33334ZM9.41083 10.9342L12.9467 7.39917L14.125 8.57751L9.41083 13.2917L6.16917 10.05L7.34833 8.87167L9.41083 10.9342Z" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_75_725">
+                            <rect width="20" height="20" fill="white" />
+                        </clipPath>
+                    </defs>
+                </svg>
+            </div>
+            <div class="menu_name">Employee</div>
+        </div>
+
+    </a>
 
     <a href="Tasks.html">
         <div class="menu_section_item">

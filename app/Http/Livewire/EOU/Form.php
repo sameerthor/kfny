@@ -16,7 +16,7 @@ class Form extends Component
     public $eou_id = null;
     public $eou_letter_id;
     public $eouLetterForm;
-    public $searchForm;
+    public $searchForm=[];
     public $searchResults;
     public $main_search;
     public function render()

@@ -19,6 +19,11 @@ class Discovery extends Model
         return $this->hasMany(DiscoverySchedule::class, 'discovery_id', 'id');
     }
     
+    public function appearances()
+    {
+        return $this->hasMany(DiscoverAppearance::class, 'discovery_id', 'id');
+    }
+
     protected function subpoenaDate(): Attribute
     {
         return Attribute::make(

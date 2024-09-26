@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\FilingInformation;
 use App\Models\Discovery;
 use App\Models\DiscoverySchedule;
+use App\Models\DiscoverAppearance;
 
 class Form extends Component
 {
@@ -13,7 +14,9 @@ class Form extends Component
     public $rightForm;
     public $basic_intake_id;
     public $disc_schedule_id;
+    public $disc_appearance_id;
     public $modalData;
+    public $appModalData;
     public $leftFormStatus = "readonly";
     public $rightFormStatus = "readonly";
     protected $listeners = ['formdataChange'];
@@ -119,5 +122,37 @@ class Form extends Component
         $this->dispatchBrowserEvent('saveSchedule');
         $this->disc_schedule_id = null;
         $this->modalData = null;
+    }
+
+    public function addDiscAppearance()
+    {
+        $this->disc_appearance_id = null;
+        $this->dispatchBrowserEvent('addAppearance');
+    }
+
+    public function editDiscAppearance($id)
+    {
+        $this->disc_appearance_id = $id;
+        $this->dispatchBrowserEvent('editAppearance');
+        $this->appModalData = DiscoverAppearance::find($id)?->toArray();
+    }
+
+    public function submitAppearanceForm()
+    {
+        $data = $this->appModalData;
+        $id = $this->disc_appearance_id;
+        $form=$this->rightForm;
+        $data['discovery_id'] = @$form['id'];
+
+        if (empty($id)) {
+            DiscoverAppearance::create($data);
+        } else {
+            unset($data['created_at']);
+            unset($data['updated_at']);
+            DiscoverAppearance::where('id', $id)->update($data);
+        }
+        $this->dispatchBrowserEvent('saveAppearance');
+        $this->disc_appearance_id = null;
+        $this->appModalData = null;
     }
 }
