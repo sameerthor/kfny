@@ -10,6 +10,10 @@ use App\Http\Controllers\Controller;
 class EmployeeController extends Controller
 {
 
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
   public function index()
   {
     $employees = User::role('employee')->get();

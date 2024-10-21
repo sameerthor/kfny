@@ -15,7 +15,10 @@ use Auth;
 
 class CalenderController extends Controller
 {
-
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
   public function index()
   {
     $employees = User::role('employee')->select("id", "name")->get()->toArray();
