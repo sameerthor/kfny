@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "3.4",
         "livewire/livewire": "^2.12",
+        "phpoffice/phpword": "dev-master",
         "revolution/laravel-google-sheets": "^6.2",
         "spatie/laravel-permission": "^6.9"
     },

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\DataManagement\ProvoiderInformationController;
 use App\Http\Controllers\Admin\DataManagement\CaseStatusController;
 use App\Http\Controllers\Admin\DataManagement\SettledPersonController;
 use App\Http\Controllers\Admin\Ligitation\LigitationController;
+use App\Http\Controllers\Admin\TemplateController;
 use App\Http\Controllers\Admin\Invoice\InvoiceController;
 use App\Http\Controllers\Admin\CalenderController;
 use Spatie\Permission\Models\Role;
@@ -72,7 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-
+Route::resource('templates', TemplateController::class,['names' => 'templates']);
 Route::resource('data-management', ProvoiderInformationController::class, ['names' => [
     'index' => 'data-management',
 ]]);

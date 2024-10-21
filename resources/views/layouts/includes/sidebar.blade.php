@@ -159,6 +159,7 @@
         </div>
 
     </a>
+
     <a href="{{URL('/employee-management')}}">
         <div class="menu_section_item {{ request()->routeIs('employee.list') ? 'kfny_active' : ''  }}">
             <div class="menu_icon">
@@ -178,8 +179,8 @@
 
     </a>
 
-    <a href="Tasks.html">
-        <div class="menu_section_item">
+    <a href="{{URL('/templates')}}">
+        <div class="menu_section_item {{ request()->routeIs('templates') ? 'kfny_active' : ''  }}">
             <div class="menu_icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                     <g clip-path="url(#clip0_75_748)">
