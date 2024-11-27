@@ -10,6 +10,12 @@ class Trial extends Model
 {
     use HasFactory;
     protected $fillable=['basic_intake_id','not_filed','not_received','deadline','sjm_deadline','trial_decision','trial_noe_date'];
+
+    public function basic_intake()
+    {
+        return $this->belongsTo(BasicIntake::class, 'basic_intake_id');
+    }
+    
     public function trialDates()
     {
         return $this->hasMany(TrialDate::class);

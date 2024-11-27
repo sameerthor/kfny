@@ -45,7 +45,7 @@
                         <td>{{$res['patient']['claim_number']}}</td>
                         <td>{{$res['patient']['doa']}}</td>
                         <td>{{$res['patient']['insuranceCompany']['name']}}</td>
-                        <td>${{number_format($res->tableDetails->sum('amount'),2)}}</td>
+                        <td>${{number_format($res->tableDetails->sum('out_st'),2)}}</td>
                         <td>${{$res['is_ligitation']=='2'?"40":""}}{{$res['is_ligitation']=='3'?"0":""}}{{$res['is_ligitation']=='1'?$res['patient']['insuranceCompany']['filing_fees_date_specific']:""}}</td>
                     </tr>
                     @endif
@@ -70,7 +70,7 @@
                 <tbody>
                     @foreach($provider_filings as $k=>$res)
                     @if(in_array($res['id'],$selected_filing))
-                    @php $c_total=(float)@$c_total+$res->tableDetails->sum('amount');
+                    @php $c_total=(float)@$c_total+$res->tableDetails->sum('out_st');
                     $f_total=(float)@$f_total+($res['is_ligitation']=='2'?40:($res['is_ligitation']=='3'?0:($res['is_ligitation']=='1'?(float)@$res['patient']['insuranceCompany']['filing_fees_date_specific']:0)));@endphp
                     <tr>
                         <td>{{$res['id']}}</td>
@@ -79,7 +79,7 @@
                         <td>{{$res['patient']['claim_number']}}</td>
                         <td>{{$res['patient']['doa']}}</td>
                         <td>{{$res['patient']['insuranceCompany']['name']}}</td>
-                        <td>${{number_format($res->tableDetails->sum('amount'),2)}}</td>
+                        <td>${{number_format($res->tableDetails->sum('out_st'),2)}}</td>
                         <td>${{$res['is_ligitation']=='2'?"40":""}}{{$res['is_ligitation']=='3'?"0":""}}{{$res['is_ligitation']=='1'?$res['patient']['insuranceCompany']['filing_fees_date_specific']:""}}</td>
 
                     </tr>

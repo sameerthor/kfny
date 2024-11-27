@@ -7,6 +7,7 @@ use App\Models\BasicIntake;
 use App\Models\User;
 use App\Models\TaskAssigned;
 use Auth;
+
 class Index extends Component
 {
     public $taskForm;
@@ -15,10 +16,9 @@ class Index extends Component
     {
         $basic_intakes = BasicIntake::all();
         $employees = User::role('employee')->select("id", "name")->get();
-        if(in_array('employee',Auth::user()->roles->pluck('name')->toArray()))
-        {
-            $tasks = TaskAssigned::where('employee_id',Auth::id())->orderBy('task_deadline', 'ASC')->get();
-        }else{
+        if (in_array('employee', Auth::user()->roles->pluck('name')->toArray())) {
+            $tasks = TaskAssigned::where('employee_id', Auth::id())->orderBy('task_deadline', 'ASC')->get();
+        } else {
             $tasks = TaskAssigned::orderBy('task_deadline', 'ASC')->get();
         }
         return view('livewire.task.index', compact('basic_intakes', 'employees', 'tasks'));
@@ -47,7 +47,13 @@ class Index extends Component
             if (!isset($data['assigned_calender'])) {
                 $data['assigned_calender'] = 1;
             };
-            TaskAssigned::create($data);
+            foreach ($data['file_no'] as $r) {
+                $created_data = $data;
+                $created_data['file_no'] = $r;
+                $res = TaskAssigned::create($created_data);
+            }
+            $this->task_id = null;
+            $this->taskForm = null;
         } else {
             unset($data['created_at']);
             unset($data['updated_at']);
@@ -61,12 +67,10 @@ class Index extends Component
     {
         TaskAssigned::where('id', $id)->delete();
         $this->emitSelf('$refresh');
-
     }
 
-    public function changeStatus($value,$id)
+    public function changeStatus($value, $id)
     {
-        TaskAssigned::where('id', $id)->update(['task_status'=>$value]);
-
+        TaskAssigned::where('id', $id)->update(['task_status' => $value]);
     }
 }

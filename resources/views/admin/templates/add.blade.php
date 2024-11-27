@@ -1,46 +1,36 @@
 @extends('layouts.app')
 @section('content')
-
+<script src='/js/WebViewer/lib/webviewer.min.js'></script>
 <div class="Patientinfo settements">
     <div class="row">
         <div class="page_title">
-            Add Templates
+            Add Template
         </div>
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="kfnythemes_modal">
-
-                <!-- Button trigger modal  html start-->
                 <div class="button_one">
                     <a href="{{route('templates.index')}}" class="btn btn-secondary add-ProviderInformation-modal">
                         Back
                     </a>
                 </div>
-                <!-- Button trigger modal  html start-->
-                <form method="post" action="{{route('templates.store')}}" enctype="multipart/form-data">
-
-                    @csrf <div class="examAlertMsg"></div>
+                <form id="uploadForm"> 
+                    @csrf
                     <div class="row">
-                        <div class="col-lg-6 col-md-6">
-                            <div class="form-group">
-                                <label class="mb-1">Title<span class="text-danger ">*</span></label>
-                                <input type="text" class="form-control" name="title" id="title" required>
-                            </div>
-
+                        <div class="col-lg-4 col-md-4">
+                            <input type="text" class="form-control" required id="template_name" name="template_name" placeholder="Enter Template Name">
                         </div>
+                        <div class="col-lg-4 col-md-4">
 
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6">
+                            <button type="submit" id="submit_button" class="btn btn-secondary">SAVE</button>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
                             <div class="form-group">
-                                <label class="mb-1">Upload Doc<span class="text-danger ">*</span></label>
-                                <input type="file" class="form-control " name="doc_file" id="doc_file" required accept='application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document'>
+                                <div id='viewer' style='width: 100%; height: 80vh;border: 1px solid #80808052;'></div>
                             </div>
-
                         </div>
 
                     </div>
 
-                    <button type="submit" class="btn btn-primary ">SUBMIT</button>
                 </form>
 
 
@@ -51,7 +41,64 @@
 
 
 </div>
-
-
-
 @endsection
+@push("custom-scripts")
+<script>
+    WebViewer.WebComponent({
+            path: '/js/WebViewer/lib', // path to the Apryse 'lib' folder on your server
+            licenseKey: 'YOUR_LICENSE_KEY', // sign up to get a key at https://dev.apryse.com
+            initialDoc: '',
+            extension: 'docx',
+            enableOfficeEditing: true,
+            enableFilePicker: true,
+            // initialDoc: '/path/to/my/file.pdf', // You can also use documents on your server
+        }, document.getElementById('viewer'))
+        .then(instance => {
+            const {
+                documentViewer,
+                annotationManager
+            } = instance.Core;
+
+            // call methods from instance, documentViewer and annotationManager as needed
+
+            // you can also access major namespaces from the instance as follows:
+            // const Tools = instance.Core.Tools;
+            // const Annotations = instance.Core.Annotations;
+
+            documentViewer.addEventListener('documentLoaded', () => {
+                // call methods relating to the loaded document
+            });
+
+            $("#uploadForm").on("submit",async function(e) {
+                e.preventDefault();
+                const doc = documentViewer.getDocument();
+                const xfdfString = await annotationManager.exportAnnotations();
+                const data = await doc.getFileData({
+                    // saves the document with annotations in it
+                    xfdfString
+                });
+                const arr = new Uint8Array(data);
+                const blob = new Blob([arr], {
+                    type: 'application/octet-stream'
+                });
+                var formData = new FormData();
+                formData.append('template_name', $("#template_name").val());
+                formData.append('doc', blob);
+                formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
+                $.ajax({
+                    /* the route pointing to the post function */
+                    url: "{{route('templates.store')}}",
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    dataType:'json',
+                    contentType: false,
+                    success: function(data) {
+                        alert("Template created successfuly");
+                        window.location.replace(data.redirect_url);
+                    }
+                });
+            })
+        });
+</script>
+@endpush

@@ -312,7 +312,7 @@
             </div>
             @endif
         </div>
-        <h5 style="float:right;">Total Outstanding: <span>{{max((int)((@$settlementForm['new_total']=="1"?(int)@$settlementForm['new_principle']:(int)@$settlementForm['principle_amount']) + (int)@$settlementForm['interest_amount'] + (int)@$settlementForm['attorney_fees'] + (int)@$settlementForm['filing_fees'] + (int)@$settlementForm['costs'])-$settlementChecks->sum('total'), 0)}}</span></h5>
+        <h5 style="float:right;">Total Outstanding: <span>@php $out=max((int)((@$settlementForm['new_total']=="1"?(int)@$settlementForm['new_principle']:(int)@$settlementForm['principle_amount']) + (int)@$settlementForm['interest_amount'] + (int)@$settlementForm['attorney_fees'] + (int)@$settlementForm['filing_fees'] + (int)@$settlementForm['costs'])-$settlementChecks->sum('total'), 0);echo $out;$this->saveOut($out); @endphp</span></h5>
         <div class="modal fade" id="settlement-check-popup" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                 <div class="modal-content">

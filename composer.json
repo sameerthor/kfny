@@ -8,7 +8,7 @@
         "php": "^8.0",
         "barryvdh/laravel-dompdf": "^2.0",
         "doctrine/dbal": "^3.8",
-        "dompdf/dompdf": "*",
+        "dompdf/dompdf": "^2.0",
         "fruitcake/laravel-cors": "^2.0.5",
         "guzzlehttp/guzzle": "^7.2",
         "haruncpi/laravel-id-generator": "^1.1",
@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "3.4",
         "livewire/livewire": "^2.12",
+        "ncjoes/office-converter": "1.0.5",
         "phpoffice/phpword": "dev-master",
         "revolution/laravel-google-sheets": "^6.2",
         "spatie/laravel-permission": "^6.9"

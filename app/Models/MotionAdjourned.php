@@ -11,6 +11,18 @@ class MotionAdjourned extends Model
     use HasFactory;
     protected $fillable=['motion_id','adj_date','time_on','calender','x_mot_due','x_mot_filed','opp_due','opp_filed','reply_due','reply_filed','x_mot_reply_due'];
 
+ 
+    public function assignedTo($type, $column)
+    {
+      return $this->hasMany(EmployeeCalenderRelation::class, 'appearance_id', 'id')->where(['appearance_type' => $type, 'appearance_column' => $column]);
+    }
+
+    
+    public function motion()
+    {
+        return $this->belongsTo(Motion::class, 'motion_id');
+    }
+
     protected function adjDate(): Attribute
     {
         return Attribute::make(

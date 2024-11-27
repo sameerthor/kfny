@@ -75,7 +75,7 @@
                 </thead>
                 <tbody>
                 @foreach($data->invoice_intake as $k=>$res)
-                    @php $c_total=(float)@$c_total+$res->tableDetails->sum('amount');
+                    @php $c_total=(float)@$c_total+$res->tableDetails->sum('out_st');
                     $f_total=(float)@$f_total+($res['is_ligitation']=='2'?40:($res['is_ligitation']=='3'?0:($res['is_ligitation']=='1'?$res['patient']['insuranceCompany']['filing_fees_date_specific']:0)));@endphp
                     <tr style="background-color: #bde0ff; padding: 40px;">
                         <td style="padding: 4px; border: 1px solid #000;">{{$k+1}}</td>
@@ -83,7 +83,7 @@
                         <td style="padding: 4px; border: 1px solid #000;">{{@$res['patient']['first_name']}} {{@$res['patient']['last_name']}}</td>
                         <td style="padding: 4px; border: 1px solid #000;">{{$res['provoiderInformation']['name']}}</td>
                         <td style="padding: 4px; border: 1px solid #000;">{{$res['patient']['insuranceCompany']['name']}}</td>
-                        <td style="padding: 4px; border: 1px solid #000;">${{number_format($res->tableDetails->sum('amount'),2)}}</td>
+                        <td style="padding: 4px; border: 1px solid #000;">${{number_format($res->tableDetails->sum('out_st'),2)}}</td>
                         <td style="padding: 4px; border: 1px solid #000;">${{$res['is_ligitation']=='2'?"40":""}}{{$res['is_ligitation']=='3'?"0":""}}{{$res['is_ligitation']=='1'?$res['patient']['insuranceCompany']['filing_fees_date_specific']:""}}</td>
                     </tr>
             

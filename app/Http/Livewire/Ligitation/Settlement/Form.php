@@ -149,16 +149,16 @@ class Form extends Component
     {
         $basicIntake = BasicIntake::find($this->basic_intake_id);
         if ($field == 'principle_percent') {
-            $case_total = $basicIntake->tableDetails->sum('amount');
+            $case_total = $basicIntake->tableDetails->sum('out_st');
             @$this->settlementForm['principle_amount'] = round(($case_total / 100) * @$this->settlementForm['principle_percent'],2);
         }
         if ($field == 'principle_amount') {
-            $case_total = $basicIntake->tableDetails->sum('amount');
+            $case_total = $basicIntake->tableDetails->sum('out_st');
             @$this->settlementForm['principle_percent'] =  (@$this->settlementForm['principle_amount'] * 100) / $case_total;
         }
 
 
-        $principle = @$this->settlementForm['new_total'] == 1 ? @$this->settlementForm['new_principle'] : $basicIntake->tableDetails->sum('amount');
+        $principle = @$this->settlementForm['new_total'] == 1 ? @$this->settlementForm['new_principle'] : $basicIntake->tableDetails->sum('out_st');
 
 
         if (($field == 'interest_percent' || 'total' || $field == 'new_principle' || $field == 'date' || $field == 'interest_from' || $field == 'interest_from_date' || $field == 'principle_percent' || $field == 'term') && !empty(@$this->settlementForm['interest_from'])) {
@@ -310,6 +310,15 @@ class Form extends Component
                 $basicIntake->status = $status->id;
                 $basicIntake->save();
             }
+        }
+    }
+
+
+    public function saveOut($val)
+    {
+        $id = $this->settlement_id;
+        if (!empty($id)) {
+            Settlement::where('id', $id)->update(['outstanding'=>$val]);
         }
     }
 }

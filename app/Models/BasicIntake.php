@@ -43,9 +43,20 @@ class BasicIntake extends Model
         return $this->hasMany(BasicIntakeBilling::class, 'basic_intake_id', 'id');
     }
 
+    public function motions()
+    {
+        return $this->hasMany(Motion::class, 'basic_intake_id', 'id');
+    }
+
     public function trial()
     {
         return $this->hasOne(Trial::class, 'basic_intake_id', 'id');
+    }
+    
+    
+    public function appeals()
+    {
+        return $this->hasMany(Appeal::class, 'basic_intake_id', 'id');
     }
 
     public function settlements()
@@ -53,9 +64,15 @@ class BasicIntake extends Model
         return $this->hasOne(Settlement::class, 'basic_intake_id', 'id');
     }
 
-    public function appeals()
+    public function discovery()
     {
-        return $this->hasMany(Appeal::class, 'basic_intake_id', 'id');
+        return $this->hasOne(Discovery::class, 'basic_intake_id', 'id');
+    }
+
+
+    public function filingInfo()
+    {
+        return $this->hasOne(FilingInformation::class, 'basic_intake_id', 'id');
     }
 
     public function patient()

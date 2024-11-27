@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('templates', function (Blueprint $table) {
             $table->id();
-            $table->string("title");
-            $table->longText("content");
+            $table->string("template_name");
+            $table->string("file_path");
             $table->timestamps();
         });
     }

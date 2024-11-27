@@ -14,6 +14,15 @@ class DiscoverySchedule extends Model
     protected $guarded = [];
     protected $fillable = ['discovery_schedule','demand_due','resp_due','ebt_deadlines','next_desc_conf','noi_due','discovery_id','order_strip_date'];
     
+    public function discovery()
+    {
+        return $this->belongsTo(Discovery::class, 'discovery_id');
+    }
+
+    public function assignedTo($type, $column)
+    {
+      return $this->hasMany(EmployeeCalenderRelation::class, 'appearance_id', 'id')->where(['appearance_type' => $type, 'appearance_column' => $column]);
+    }
 
     protected function orderStripDate(): Attribute
     {

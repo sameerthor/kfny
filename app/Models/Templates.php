@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Templates extends Model
 {
     use HasFactory;
-    protected $fillable = ["title","content"];
+    protected $fillable = ["template_name","file_path"];
 }

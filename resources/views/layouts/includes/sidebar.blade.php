@@ -103,8 +103,8 @@
 
     </a>
 
-    <a href="{{URL('/ligitation')}}">
-        <div class="menu_section_item {{ request()->routeIs('ligitation') ? 'kfny_active' : ''  }}">
+    <a href="{{URL('/litigation')}}">
+        <div class="menu_section_item {{ request()->routeIs('litigation') ? 'kfny_active' : ''  }}">
             <div class="menu_icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                     <g clip-path="url(#clip0_75_742)">
@@ -117,7 +117,7 @@
                     </defs>
                 </svg>
             </div>
-            <div class="menu_name">Ligitation</div>
+            <div class="menu_name">Litigation</div>
         </div>
 
     </a>

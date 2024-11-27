@@ -105,7 +105,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Add Task</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">@if(empty($taskForm)) Add @else Edit @endif Task</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </button>
                 </div>
@@ -118,7 +118,7 @@
                                         <div class="form-group row col-6">
                                             <label for="file_no" class="col-4 col-form-label">File no</label>
                                             <div class="col-7">
-                                                <select wire:model.defer="taskForm.file_no" multiple class="task-form-select custom-select ">
+                                                <select wire:model.defer="taskForm.file_no" @if(empty($taskForm)) multiple @endif class="task-form-select custom-select ">
                                                     <option></option>
                                                     @foreach($basic_intakes as $b)
                                                     <option>{{$b['id']}}</option>
@@ -182,7 +182,7 @@
                                         <div class="form-group row col-6">
                                             <label for="employee_id" class="col-4 col-form-label">Assigned To</label>
                                             <div class="col-7">
-                                                <select wire:model.defer="taskForm.employee_id" class="task-form-select custom-select ">
+                                                <select wire:model.defer="taskForm.employee_id"  class="task-form-select custom-select ">
                                                     <option></option>
                                                     @foreach($employees as $e)
                                                     <option value="{{ $e['id'] }}">{{$e['name'] ??'-'}}</option>

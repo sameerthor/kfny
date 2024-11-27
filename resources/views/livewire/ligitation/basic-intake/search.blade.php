@@ -44,7 +44,7 @@
                 </div>
                 <div class="pi_detail_list p-1">
                     <span class="pi_detail_label">Total</span>
-                    <span class="pi_detail_text ">{{!empty($data)?number_format($data->tableDetails->sum('amount'),2):'N/A'}}</span>
+                    <span class="pi_detail_text ">{{!empty($data)?number_format($data->tableDetails->sum('out_st'),2):'N/A'}}</span>
                 </div>
             </div>
         </div>
@@ -73,14 +73,6 @@
                                 d="M12.5233 11.4626L15.7353 14.6746L14.6746 15.7353L11.4626 12.5233C10.3077 13.4473 8.843 14 7.25 14C3.524 14 0.5 10.976 0.5 7.25C0.5 3.524 3.524 0.5 7.25 0.5C10.976 0.5 14 3.524 14 7.25C14 8.843 13.4473 10.3077 12.5233 11.4626ZM11.0185 10.9061C11.9356 9.96095 12.5 8.6717 12.5 7.25C12.5 4.34938 10.1506 2 7.25 2C4.34938 2 2 4.34938 2 7.25C2 10.1506 4.34938 12.5 7.25 12.5C8.6717 12.5 9.96095 11.9356 10.9061 11.0185L11.0185 10.9061Z"
                                 fill="white"></path>
                         </svg></span> Advanced Search</button>
-                        @if(!empty($basic_intake_id))
-                        <select wire:change="generatePDF($event.target.value)">
-                         <option selected value="">Select Template to generate</option>
-                         @foreach($templates as $res)
-                         <option value="{{$res->id}}">{{$res->title}}</option>
-                         @endforeach
-                        </select>
-                        @endif
             </div>
             <livewire:ligitation.basic-intake.advance-search/>
         </div>
@@ -113,7 +105,7 @@
                             Paid":""}}{{$res['status']=="7"?"Decison - Trial":""}}</td>
                         <td>{{@$res['provoiderInformation']['name']}}</td>
                         <td>{{@$res['defenseFirm']['firm_name']}}</td>
-                        <td>{{$res->tableDetails->sum('amount')}}</td>
+                        <td>{{$res->tableDetails->sum('out_st')}}</td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -32,7 +32,7 @@
                         @if(count($templates)>0)
                         @foreach($templates as $res)
                         <tr>
-                            <td>{{$res['title']}}</td>
+                            <td>{{$res['template_name']}}</td>
                             <td class="action-wrap text-center">
 
                                 <a class="btn edit-templates-modal" href="{{ route('templates.edit',$res['id']) }}" ><i class="fa fa-edit"></i></a>

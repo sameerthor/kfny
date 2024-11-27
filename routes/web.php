@@ -101,7 +101,7 @@ Route::resource('settled-person', SettledPersonController::class, ['names' => 's
 Route::get('settled-person-search/{q?}', [SettledPersonController::class, 'search']);
 
 
-Route::get('ligitation', [LigitationController::class, 'livewireView']);
+Route::get('litigation', [LigitationController::class, 'livewireView']);
 
 Route::get('ligitation-search', [LigitationController::class, 'search']);
 Route::get('ligitation-react', function () {

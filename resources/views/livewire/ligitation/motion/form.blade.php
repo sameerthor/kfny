@@ -533,7 +533,7 @@
                         <th scope="col">Appeal Type</th>
                         <th scope="col">Appeal Docket #</th>
                         <th scope="col">Appeal By</th>
-                        <th scope="col">App. Brief By</th>
+                        <th scope="col">App. Brief Due</th>
                         <th scope="col">App. Brief Filed</th>
                         <th scope="col">App. Response Due</th>
                         <th scope="col">App. Response Filed</th>

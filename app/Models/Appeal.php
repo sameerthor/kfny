@@ -11,6 +11,16 @@ class Appeal extends Model
     use HasFactory;
     protected $fillable=['basic_intake_id','noa_deadline','noa_filed','appeal_type','appeal_docket','appeal_by','app_brief_due','app_brief_filed','app_response_due','app_response_filed','app_reply_due','app_reply_filed','camp_date','camp_time','camp_location','oral_argument_date','master_arbitrator','app_decision','notes'];
 
+    public function basic_intake()
+    {
+        return $this->belongsTo(BasicIntake::class, 'basic_intake_id');
+    }
+    
+    public function assignedTo($type, $column)
+    {
+      return $this->hasMany(EmployeeCalenderRelation::class, 'appearance_id', 'id')->where(['appearance_type' => $type, 'appearance_column' => $column]);
+    }
+    
     protected function noaDeadline(): Attribute
     {
         return Attribute::make(

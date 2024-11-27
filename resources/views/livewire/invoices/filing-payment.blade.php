@@ -39,7 +39,7 @@
                 <tbody>
                     @if(!empty($invoice_data))
                     @foreach($invoice_data->invoice_intake as $k=>$res)
-                    @php $c_total=(float)@$c_total+$res->tableDetails->sum('amount');
+                    @php $c_total=(float)@$c_total+$res->tableDetails->sum('out_st');
                     $f_total=(float)@$f_total+($res['is_ligitation']=='2'?40:($res['is_ligitation']=='3'?0:($res['is_ligitation']=='1'?$res['patient']['insuranceCompany']['filing_fees_date_specific']:0)));@endphp
                     <tr style="cursor: pointer;">
                         <td>{{$res['id']}}</td>
@@ -48,7 +48,7 @@
                         <td>{{$res['patient']['claim_number']}}</td>
                         <td>{{$res['patient']['doa']}}</td>
                         <td>{{$res['patient']['insuranceCompany']['name']}}</td>
-                        <td>${{number_format($res->tableDetails->sum('amount'),2)}}</td>
+                        <td>${{number_format($res->tableDetails->sum('out_st'),2)}}</td>
                         <td>${{$res['is_ligitation']=='2'?"40":""}}{{$res['is_ligitation']=='3'?"0":""}}{{$res['is_ligitation']=='1'?$res['patient']['insuranceCompany']['filing_fees_date_specific']:""}}</td>
                         <td>
                             <button class="btn sky-btn" onclick="confirm('Are you sure you want to delete this item?') || event.stopImmediatePropagation()" wire:click="deleteInvoiceItem({{$res['id']}})" id="delete-bill"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

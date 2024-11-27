@@ -48,7 +48,7 @@
           <div class="patinet_input" style="margin-right: 10px;">Total :</div>
           @php
           if(isset($basicIntake))
-          $sum = "$ <span id='total_amt'>".($basicIntake->tableDetails->sum('amount'))."</span>";
+          $sum = "$ <span id='total_amt'>".($basicIntake->tableDetails->sum('out_st'))."</span>";
           else
           $sum='N/A';
           @endphp

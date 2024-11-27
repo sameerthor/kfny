@@ -10,6 +10,13 @@ class SettlementCheck extends Model
     use HasFactory;
     protected  $fillable=['settlement_id','date_received','total','principle','interest','attorney_fees','filing_fees','costs','other','check','date'];
 
+
+    
+    public function settlement()
+    {
+        return $this->belongsTo(Settlement::class, 'settlement_id');
+    }
+
     protected function dateReceived(): Attribute
     {
         return Attribute::make(
