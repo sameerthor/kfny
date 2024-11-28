@@ -35,9 +35,16 @@
                             <td>{{$res['template_name']}}</td>
                             <td class="action-wrap text-center">
 
-                                <a class="btn edit-templates-modal" href="{{ route('templates.edit',$res['id']) }}" ><i class="fa fa-edit"></i></a>
+                                <a class="btn edit-templates-modal" href="{{ route('templates.edit',$res['id']) }}"><i class="fa fa-edit"></i></a>
+                               
+                                <form action="{{ route('templates.destroy', $res->id) }}" method="POST" id="delete-form-{{ $res->id }}" style="display:none;">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
 
-                                <a class="delete  btn button-danger btn-xs tooltip-top" data-id="{{ $res['id'] }}" data-url="{{ route('templates.destroy',$res['id']) }}" data-tooltip="Delete Webinar"><i class="fa fa-trash"></i></a>
+                                <a href="#" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this template?')) document.getElementById('delete-form-{{ $res->id }}').submit();" class="text-danger">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                         @endforeach
@@ -51,10 +58,5 @@
             </div>
         </div>
     </div>
-
-
 </div>
-
-
-
 @endsection

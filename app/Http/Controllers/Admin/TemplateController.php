@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Livewire\Ligitation\Template;
 use App\Models\Templates;
 use Illuminate\Support\Facades\Storage;
 
@@ -45,5 +46,13 @@ class TemplateController extends Controller
     $r = Templates::where('id', $id)->update(['template_name' => $request->get('template_name'), 'file_path' => "template/$template_name.docx"]);
     $id = $r->id;
     return response(array("success" => true));
+  }
+
+  public function destroy($id)
+  {
+    $template = Templates::find($id);
+    Storage::delete($template->file_path);
+    $template->delete();
+    return redirect()->route('templates.index')->with('success', 'Template deleted successfully.');
   }
 }

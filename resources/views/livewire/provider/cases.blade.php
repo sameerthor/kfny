@@ -1,22 +1,24 @@
-
 <div class="Patientinfo settements">
-<style>
-    .kfnythemes_modal .modal-dialog {
-        max-width: 90% !important;
-    }
-    .kfnythemes_modal .modal-header {
-    background: #5f5f5f;
-    color: white;
-}
-</style>
+    <style>
+        .kfnythemes_modal .modal-dialog {
+            max-width: 90% !important;
+        }
+
+        .kfnythemes_modal .modal-header {
+            background: #5f5f5f;
+            color: white;
+        }
+    </style>
     <div class="row">
         <div class="page_title">
             Cases
         </div>
         <div class="col-md-9">
+            @if(count($cases)>0)
             <div style="float: right;">
                 <input type="text" placeholder="Search Case ID" class="form-control col-md-2" wire:model="searchID">
             </div>
+            @endif
             <div class="kfnythemes_table mt-4 ProviderInformation-table">
                 <table class="table">
                     <thead>
@@ -26,6 +28,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if(count($cases)>0)
                         @foreach($cases as $res)
                         <tr>
                             <td>#{{$res->id}}</td>
@@ -36,6 +39,11 @@
                             </td>
                         </tr>
                         @endforeach
+                        @else
+                        <tr>
+                            <td colspan="2" style="text-align: center;">No Case Found.</td>
+                        </tr>
+                        @endif
                     </tbody>
                 </table>
                 {{ $cases->links() }}

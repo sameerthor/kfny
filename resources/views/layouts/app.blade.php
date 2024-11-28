@@ -60,9 +60,9 @@
                             </div>
 
                             <div class="col-4">
-                                <div class="kfnythemes_notification_icon">
+                                <!-- <div class="kfnythemes_notification_icon">
                                     <i class="bi bi-bell"></i>
-                                </div>
+                                </div> -->
                                 <div class="kfnythemes_admin">
                                     <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

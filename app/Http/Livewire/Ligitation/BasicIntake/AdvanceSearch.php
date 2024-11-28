@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Ligitation\BasicIntake;
 use Livewire\Component;
 use App\Models\InsuranceCompany;
 use App\Models\PatientInfo;
+use Illuminate\Support\Arr;
 use App\Models\BasicIntake;
 use App\Models\DefenseFirm;
 use App\Models\ProvoiderInformation;
@@ -52,13 +53,12 @@ class AdvanceSearch extends Component
                 }
             });
 
-
-            $res = BasicIntake::whereHas('patient', function ($query) use ($like_filter) {
-                if (!empty($like_filter['patient'])) {
+            $res = BasicIntake::search(Arr::except($like_filter, ['patient', 'email']));
+            if (!empty($like_filter['patient'])) {
+                $res = $res->whereHas('patient', function ($query) use ($like_filter) {
                     return $query->patientsearch($like_filter['patient']);
-                }
-            });
-            unset($like_filter['patient']);
+                });
+            }
             $this->searchResults = $res->search($like_filter)->get();
         } else {
             $this->searchResults = [];
