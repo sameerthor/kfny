@@ -70,17 +70,11 @@
                                                 <img src="/images/Profile/admin.svg" />
                                             </span>
                                             <span class="kfnythemes_admin_name">
-                                                Alexander Black
+                                                {{Auth::user()->name}}
                                             </span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Action</a></li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </li>
+                                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
                                         </ul>
                                     </div>
                                 </div>

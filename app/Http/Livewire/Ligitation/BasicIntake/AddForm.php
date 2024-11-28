@@ -36,6 +36,7 @@ class AddForm extends Component
     }
     public function formdataChange($id)
     {
+  
         $this->basicIntakeData = BasicIntake::find($id);
         $this->basic_intake_id = $id;
         $this->patient_id = $this->basicIntakeData?->patient_id;

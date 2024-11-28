@@ -12,6 +12,7 @@ use App\Models\CaseStatus;
 use App\Models\Venue;
 use App\Models\ProvoiderInformation;
 use App\Models\SettledPerson;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProvoiderInformationController extends Controller
@@ -34,7 +35,7 @@ class ProvoiderInformationController extends Controller
             $provoiderInformation = ProvoiderInformation::orderBy('id', 'DESC')->paginate(config('app.paginate'));
             $caseStatusInformation = CaseStatus::orderBy('id', 'DESC')->paginate(config('app.paginate'));
             $settledPersonInformation = SettledPerson::orderBy('id', 'DESC')->paginate(config('app.paginate'));
-            return view('admin.data-management', compact('settledPersonInformation','caseStatusInformation','denialReasonInformation','arbitratorInformation','venueInformation','provoiderInformation','insuranceInformation','DefenseInformation','JudgeInformation'));
+            return view('admin.data-management', compact('settledPersonInformation', 'caseStatusInformation', 'denialReasonInformation', 'arbitratorInformation', 'venueInformation', 'provoiderInformation', 'insuranceInformation', 'DefenseInformation', 'JudgeInformation'));
         } catch (\Exception $ex) {
             \Log::error($ex);
             return response()->json([
@@ -106,6 +107,17 @@ class ProvoiderInformationController extends Controller
             ];
 
             $ProvoiderInformation = ProvoiderInformation::create($data);
+            if (@$request['user_credential'] == "1") {
+                $user = new User();
+                $user->name = $request['name'];
+                $user->password = bcrypt($request['password']);
+                $user->contact = $request['phone_number'];
+                $user->email = $request['useremail'];
+                $user->save();
+                $user = $user->fresh();
+                $user->assignRole('provider');
+                $ProvoiderInformation->update(['user_id' => $user->id]);
+            }
             // $ProvoiderInformation->refresh();
 
             $provoiderInformation = ProvoiderInformation::orderBy('id', 'DESC')->paginate(
@@ -208,6 +220,22 @@ class ProvoiderInformationController extends Controller
                 ];
 
                 $ProvoiderInformation = $checkInfo->update($data);
+                if (@$request['user_credential'] == "1") {
+                    if (!empty($checkInfo['user_id'])) {
+                        $user = User::find($checkInfo['user_id']);
+                    } else {
+                        $user = new User();
+                    }
+                    $user->name = $request['name'];
+                    if (!empty($request['password']))
+                        $user->password = bcrypt($request['password']);
+                    $user->contact = $request['phone_number'];
+                    $user->email = $request['useremail'];
+                    $user->save();
+                    $user = $user->fresh();
+                    $user->assignRole('provider');
+                    $checkInfo->update(['user_id' => $user->id]);
+                }
                 // $ProvoiderInformation->refresh();
 
                 $provoiderInformation = ProvoiderInformation::orderBy('id', 'DESC')->paginate(
@@ -245,10 +273,10 @@ class ProvoiderInformationController extends Controller
             $provoiderInformation->delete();
             $provoiderInformation = ProvoiderInformation::orderBy('id', 'DESC')
                 ->paginate(config('app.paginate'));
-                $provoiderInformationTable = view(
-                    'admin.DataManagment.ProvoiderInformation.index',
-                    compact('provoiderInformation')
-                )->render();
+            $provoiderInformationTable = view(
+                'admin.DataManagment.ProvoiderInformation.index',
+                compact('provoiderInformation')
+            )->render();
             return response()->json([
                 'status' => 'success',
                 'message' => 'Provoider Information deleted successfully !',
@@ -263,16 +291,15 @@ class ProvoiderInformationController extends Controller
         }
     }
 
-    public function search($q=null)
+    public function search($q = null)
     {
         try {
-          
-            $query =ProvoiderInformation::orderBy('id', 'DESC');
-            if(!empty($query))
-            {
-                $query->where('name','like','%'.$q.'%');
+
+            $query = ProvoiderInformation::orderBy('id', 'DESC');
+            if (!empty($query)) {
+                $query->where('name', 'like', '%' . $q . '%');
             }
-            $provoiderInformation=$query->get();
+            $provoiderInformation = $query->get();
             $provoiderInformationTable = view(
                 'admin.DataManagment.ProvoiderInformation.index',
                 compact('provoiderInformation')
@@ -281,7 +308,6 @@ class ProvoiderInformationController extends Controller
                 'status' => 'success',
                 'output' => $provoiderInformationTable,
             ]);
-            
         } catch (Exception $ex) {
             \Log::error($ex);
             return response()->json([

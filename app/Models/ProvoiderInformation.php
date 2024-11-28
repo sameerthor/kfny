@@ -10,5 +10,8 @@ class ProvoiderInformation extends Model
     use HasFactory;
     protected $table = 'provoider_informations';
     protected $guarded = [];
-
+    public function user()
+    {
+       return $this->belongsTo(User::class);
+    }
 }

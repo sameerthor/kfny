@@ -114,6 +114,7 @@
                         </div>
 
                     </div>
+                    @if(!Auth::user()->hasRole('provider'))
                     <div class="form-edit-button general-form-edit">
                         <div class="form-group row">
 
@@ -152,6 +153,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 </form>
             </div>
             <div class="basic-detail-adv col-4">
@@ -185,7 +187,7 @@
                         <div class="form-group row">
                             <label for="venue" class="col-4 col-form-label">Venue</label>
                             <div class="col-7">
-                            <select id="venue" @if($rightFormStatus=="readonly" ) disabled @endif name="venue" wire:model.defer="rightForm.venue" class="custom-select basic-form-select ">
+                                <select id="venue" @if($rightFormStatus=="readonly" ) disabled @endif name="venue" wire:model.defer="rightForm.venue" class="custom-select basic-form-select ">
                                     <option></option>
                                     <option value="Civil">Civil</option>
                                     <option value="Supreme">Supreme</option>
@@ -252,6 +254,7 @@
                             </div>
                         </div>
                     </div>
+                    @if(!Auth::user()->hasRole('provider'))
                     <div class="form-edit-button adv-form-edit">
                         <div class="form-group row">
 
@@ -291,6 +294,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 </form>
             </div>
         </div>

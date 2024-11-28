@@ -47,4 +47,12 @@ class LoginController extends Controller
 
         return redirect('/login');
     }
+
+    protected function authenticated($request, $user){
+        if($user->hasRole('provider')){
+            return redirect('/cases');
+        } else {
+            return redirect('/litigation');
+        }
+    }
 }
