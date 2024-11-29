@@ -61,7 +61,7 @@ class Template extends Component
         if ($this->template_type == "pdf") {
             $templateProcessor->saveAs($output_path . "/temp.docx");
             $converter = new OfficeConverter($output_path . "/temp.docx", $output_path, 'soffice');
-            $converter->convertTo($template_name . ".pdf");
+            $converter->convertTo($output_path .'/'.$template_name . ".pdf");
             unlink($output_path . "/temp.docx");
         } elseif ($this->template_type == "docx") {
             $templateProcessor->saveAs($output_path . "/" . $template_name . ".docx");
